@@ -1,10 +1,66 @@
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v9.0/.Modules/settings.schema.json",
+  "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v9.2/.Modules/settings.schema.json",
   "country": "w1",
+  "artifact": "/sandbox/28.5.54151.55751/w1/latest",
   "appSourceCopMandatoryAffixes": [
-    "<affix>"
+    "ori"
   ],
-  "appFolders": [],
-  "testFolders": [],
-  "bcptTestFolders": []
+  "appFolders": [
+    "app"
+  ],
+  "testFolders": [
+    "test"
+  ],
+  "bcptTestFolders": [],
+  "doNotRunTests": false,
+  "appDependencyProbingPaths": [
+    {
+      "repo": "https://github.com/OrigoSoftwareSolutions/bc-origo-bifrost-core",
+      "release_status": "latestBuild",
+      "version": "latest",
+      "projects": "*",
+      "authTokenSecret": "ghTokenWorkflow"
+    }
+  ],
+  "nuGetFeedSelectMode": "Exact",
+  "buildModes": [
+    "Default",
+    "Test"
+  ],
+  "keyVaultCodesignCertificateName": "CodeSigning-2025",
+  "conditionalSettings": [
+    {
+      "buildModes": [
+        "Default"
+      ],
+      "settings": {
+        "doNotBuildTests": true,
+        "doNotRunTests": true
+      }
+    },
+    {
+      "buildModes": [
+        "Test"
+      ],
+      "settings": {
+        "doNotSignApps": true,
+        "skipUpgrade": true
+      }
+    }
+  ],
+  "fullBuildPatterns": [
+    ".AL-Go/settings.json",
+    ".AL-Go/*.ps1",
+    "tools/Get-SharedAlpacaBuildOrder.ps1",
+    "tools/SharedAlpacaContainer.ps1",
+    "tools/Test-SharedAlpacaContainer.ps1"
+  ],
+  "repoVersion": "28.0",
+  "deliverToAppSource": {
+    "mainAppFolder": "app",
+    "branches": [
+      "main"
+    ],
+    "continuousDelivery": false
+  }
 }

@@ -1,0 +1,64 @@
+{
+  "id": "a1a7e927-8beb-4ab5-b2c3-68d0f339e43b",
+  "name": "Bifrost Subcontracting",
+  "publisher": "Origo",
+  "version": "28.0.0.0",
+  "brief": "Bifrost Subcontracting - message types for Subcontracting",
+  "description": "Bifröst message types for the Microsoft Subcontracting app, so an agent can operate it end to end.",
+  "url": "https://www.origo.is/",
+  "help": "https://docs.bifrost.origo.is/en-us/subcontracting/",
+  "privacyStatement": "https://docs.bifrost.origo.is/en-us/licensing/privacy/",
+  "EULA": "https://docs.bifrost.origo.is/en-us/licensing/eula/",
+  "applicationInsightsConnectionString": "InstrumentationKey=af411133-5e22-486f-b23a-081b79ed4168;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=c4476f32-5dfb-490a-8ad0-fb8ffad1c050",
+  "contextSensitiveHelpUrl": "https://docs.bifrost.origo.is/{0}/subcontracting/",
+  "keyVaultUrls": [],
+  "supportedLocales": [
+    "en-US",
+    "is-IS"
+  ],
+  "logo": "assets/Logo250x250.png",
+  "dependencies": [
+    {
+      "id": "7505e808-6e52-4b96-a328-82573391297a",
+      "name": "Bifrost Foundation",
+      "publisher": "Origo",
+      "version": "28.0.5.590"
+    },
+    {
+      "id": "1f32a50d-0057-4b95-b5df-cc04d7e89470",
+      "name": "Subcontracting",
+      "publisher": "Microsoft",
+      "version": "28.5.0.0"
+    }
+  ],
+  "internalsVisibleTo": [
+    {
+      "id": "81cc895f-e3a4-4ef2-93e4-1ef8da227d59",
+      "name": "Bifrost Subcontracting - Tests",
+      "publisher": "Origo"
+    }
+  ],
+  "screenshots": [],
+  "platform": "28.0.0.0",
+  "application": "28.5.0.0",
+  "idRanges": [
+    {
+      "from": 10036885,
+      "to": 10036984
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "target": "Cloud",
+  "features": [
+    "TranslationFile"
+  ],
+  "propagateDependencies": false,
+  "runtime": "17.0",
+  "suppressWarnings": [
+    "AS0081"
+  ]
+}

@@ -1,3 +1,21 @@
+# Bifrost: never ship the test app's internalsVisibleTo grant.
+# COSMO Alpaca replaces .AL-Go/PreCompileApp.ps1 with its own override and never calls ours,
+# so the strip happens here, before anything compiles. Only the Test build mode keeps the grant.
+if ($env:BuildMode -ne 'Test') {
+    $appJsonPath = Join-Path $env:GITHUB_WORKSPACE 'app/app.json'
+    if (Test-Path -LiteralPath $appJsonPath) {
+        $appJson = Get-Content -LiteralPath $appJsonPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($appJson.PSObject.Properties.Name -contains 'internalsVisibleTo') {
+            $appJson.PSObject.Properties.Remove('internalsVisibleTo')
+        }
+        if ($appJson.PSObject.Properties.Name -contains 'suppressWarnings') {
+            $appJson.suppressWarnings = @($appJson.suppressWarnings | Where-Object { $_ -ne 'AS0081' })
+        }
+        $appJson | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $appJsonPath -Encoding UTF8
+        Write-Host "Bifrost: build mode '$($env:BuildMode)' - removed internalsVisibleTo and the AS0081 suppression from app/app.json."
+    }
+}
+
 Write-Host "::group::PipelineInitialize"
 
 if (Test-Path -LiteralPath "$($env:NeedsContext)" -PathType Leaf) {
@@ -79,8 +97,23 @@ $overridesPath = Join-Path $scriptsPath "/Overrides/RunAlPipeline"
 Write-Host "Alpaca overrides path: $overridesPath"
 $overridePath = Join-Path $overridesPath "PipelineInitialize.ps1"
 if (Test-Path $overridePath) {
+    if ($env:BIFROST_SHARED_CONTAINER -eq 'true') {
+        . ./tools/SharedAlpacaContainer.ps1
+        Initialize-BifrostSharedContainer -OverridePath $overridePath -ScriptsPath $scriptsPath -BackendUrl $jobs.initialization.outputs.backendUrl
+    }
     Write-Host "Invoking Alpaca override"
     . $overridePath -Jobs $jobs -ScriptsPath $scriptsPath
 }
+
+if ($env:BIFROST_SHARED_CONTAINER -eq 'true') {
+    if ($env:ALPACA_CONTAINER_ID -ne $env:BIFROST_CONTAINER_ID) { throw 'Alpaca selected a different container.' }
+    Set-Variable -Name 'BifrostAlpacaPublish' -Value (Get-Variable -Name 'PublishBcContainerApp' -Scope 1 -ValueOnly) -Scope 1
+    Set-Variable -Name 'PublishBcContainerApp' -Scope 1 -Value {
+        param([hashtable] $Parameters)
+        . ./tools/SharedAlpacaContainer.ps1
+        Invoke-BifrostSharedPublish -Parameters $Parameters -Publisher $BifrostAlpacaPublish
+    }
+}
+
 
 Write-Host "::endgroup::"
