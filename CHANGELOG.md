@@ -1,5 +1,6 @@
 # Changelog
 
-## [28.0.0.0] - Unreleased
+## [28.0.1.0] - 2026-11-02
 
-- Repository scaffolded from Bifrost Subscription Billing setup.
+### Added
+- Added `Manufacturing.Subcontracting.CreatePurchaseOrders` for creating purchase orders from a released production routing operation.

@@ -13,7 +13,13 @@ Origo.Bifrost.Subcontracting (tests: Origo.Bifrost.Subcontracting.Test)
 App:   10036885-10036984
 Tests: 97300-97399
 
-No objects are allocated yet. Record every allocated id here as objects are created.
+| Id | Object | Name |
+| --- | --- | --- |
+| 10036885 | enumextension | Sub Msg Type ori |
+| 10036886 | codeunit | Sub PO Create Impl ori |
+| 10036887 | codeunit | Sub Registration ori |
+| 10036888 | permissionset | BIFROST Subcontracting ori |
+| 97300 | codeunit (test) | Sub Create PO Tst ori |
 
 ## Microsoft source
 Wrapped Microsoft app: Subcontracting (`1f32a50d-0057-4b95-b5df-cc04d7e89470`, 28.5.0.0). Source: https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting
