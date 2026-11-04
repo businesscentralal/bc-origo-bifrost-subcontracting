@@ -12,14 +12,16 @@ Bifrost Subcontracting makes Microsoft's **Subcontracting** app callable through
 
 **Microsoft source:** <https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting>
 
-**Status:** Exposes `Manufacturing.Subcontracting.CreatePurchaseOrders` through Bifröst for creating purchase orders from a released production routing operation. The message preserves the existing public type key while living in the dedicated Subcontracting app.
+**Status:** Exposes `Subcontracting.PurchaseOrder.Create` through Bifröst for creating purchase orders from a released production routing operation. The type is new in 28.0.1.0 and has no earlier public key.
 
 ## Functional Flow
 
 1. The caller provides a released production order and subcontracted routing operation.
-2. Bifrost Foundation dispatches `Manufacturing.Subcontracting.CreatePurchaseOrders` to this app.
+2. Bifrost Foundation dispatches `Subcontracting.PurchaseOrder.Create` to this app.
 3. The app validates the routing line and calls Microsoft's subcontract purchase-order creator.
-4. The response includes the production order number and number of purchase orders created.
+4. The response includes the production order number, the number of purchase orders and their numbers.
+
+Optional `routingNo` / `routingReferenceNo` pick one routing line when the operation number is not unique. Refusals are coded: `MissingParameter`, `InvalidParameterFormat`, `RecordNotFound`, `PreconditionFailed` (not a work center line, no subcontractor, no Manufacturing Setup subcontracting template/batch, nothing left to purchase). The standard creator commits internally and answers its component-location confirmations with yes when called without a user; the effect is not idempotent, but a repeated call with nothing left to purchase is refused.
 
 ## Benefits
 
@@ -41,12 +43,10 @@ Create purchase orders for one released production routing operation:
 
 ```json
 {
-	"type": "Manufacturing.Subcontracting.CreatePurchaseOrders",
+	"type": "Subcontracting.PurchaseOrder.Create",
 	"data": {
 		"productionOrderNo": "X-PROD-0001",
-		"routingReferenceNo": 0,
-		"routingNo": "X-ROUTE-01",
-		"operationNo": "020"
+				"operationNo": "020"
 	}
 }
 ```
@@ -58,7 +58,9 @@ Create purchase orders for one released production routing operation:
 | 10036885 | Enum extension | Sub Msg Type ori |
 | 10036886 | Codeunit | Sub PO Create Impl ori |
 | 10036887 | Codeunit | Sub Registration ori |
-| 10036888 | Permission set | BIFROST Subcontracting ori |
+| 10036888 | Permission set | BIFROST Subc ori |
+| 10036889 | Permission set extension | BIFROST SubcFull ori |
+| 10036890 | Permission set extension | BIFROST SubcRead ori |
 
 ---
 

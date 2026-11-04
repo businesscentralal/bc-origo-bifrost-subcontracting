@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Subcontracting">
+    <body>
+      <group id="body">
+        <trans-unit id="Codeunit 1523699197 - NamedType 4148992451" size-unit="char" translate="yes" xml:space="preserve">
+          <source>More than one released routing line matches operation %1 on order %2.</source>
+          <target>Fleiri en ein útgefin leiðarlína passar við aðgerð %1 á pöntun %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = operation number, %2 = production order number||is-IS=Fleiri en ein útgefin leiðarlína passar við aðgerð %1 á pöntun %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType AmbiguousErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 138314172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>At most %1 characters</source>
+          <target>Mest %1 stafir</target>
+          <note from="Developer" annotates="general" priority="2">%1 = max length||is-IS=Mest %1 stafir</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType AtMostTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 3569966352" maxwidth="250" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates subcontract purchase orders for one released production-order routing operation and its outstanding subcontract quantity.</source>
+          <target>Stofnar undirverktakakauppantanir fyrir eina útgefna leiðaraðgerð framleiðslupöntunar og óafgreitt magn hennar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stofnar undirverktakakauppantanir fyrir eina útgefna leiðaraðgerð framleiðslupöntunar og óafgreitt magn hennar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 280487822" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 must be a whole number.</source>
+          <target>%1 verður að vera heiltala.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=%1 verður að vera heiltala.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType InvalidIntegerErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 1575191754" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Provide %1.</source>
+          <target>Tilgreindu %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=Tilgreindu %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType MissingKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 444968715" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send routingReferenceNo (and routingNo) to pick one routing line.</source>
+          <target>Sendu routingReferenceNo (og routingNo) til að velja eina leiðarlínu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu routingReferenceNo (og routingNo) til að velja eina leiðarlínu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NextStepAmbiguousTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 3195740531" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check the production order and operation identifiers; only released production orders are supported.</source>
+          <target>Athugaðu auðkenni framleiðslupöntunar og aðgerðar; aðeins útgefnar framleiðslupantanir eru studdar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Athugaðu auðkenni framleiðslupöntunar og aðgerðar; aðeins útgefnar framleiðslupantanir eru studdar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NextStepIdentifyTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 1284506242" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the key in data and call again.</source>
+          <target>Sendu lykilinn í data og kallaðu aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn í data og kallaðu aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NextStepProvideTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 2821723990" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fix the setup named in the message in Business Central, then call again.</source>
+          <target>Lagaðu uppsetninguna sem nefnd er í skilaboðunum í Business Central og kallaðu aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lagaðu uppsetninguna sem nefnd er í skilaboðunum í Business Central og kallaðu aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NextStepSetupTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 3434407542" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Business Central created no purchase order for operation %1 on order %2 (subcontracting disabled, quantity already on purchase orders, or component check declined).</source>
+          <target>Business Central stofnaði enga innkaupapöntun fyrir aðgerð %1 á pöntun %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = operation number, %2 = production order number||is-IS=Business Central stofnaði enga innkaupapöntun fyrir aðgerð %1 á pöntun %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NoOrderCreatedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 193132053" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Manufacturing Setup has no subcontracting requisition template and batch.</source>
+          <target>Framleiðsluuppsetning er ekki með undirverktakabeiðnisniðmát og -hóp.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Framleiðsluuppsetning er ekki með undirverktakabeiðnisniðmát og -hóp.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NoSetupErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 3692576089" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Work center %1 has no Subcontractor No.</source>
+          <target>Vinnustöð %1 er ekki með undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = work center number||is-IS=Vinnustöð %1 er ekki með undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NoSubcontractorErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 3351274" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Released production routing operation %1 was not found on order %2.</source>
+          <target>Útgefin leiðaraðgerð %1 fannst ekki á framleiðslupöntun %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = operation number, %2 = production order number||is-IS=Útgefin leiðaraðgerð %1 fannst ekki á framleiðslupöntun %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NotFoundErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 1319878772" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No outstanding quantity remains to be purchased for operation %1 on order %2.</source>
+          <target>Ekkert óafgreitt magn er eftir til innkaupa fyrir aðgerð %1 á pöntun %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = operation number, %2 = production order number||is-IS=Ekkert óafgreitt magn er eftir til innkaupa fyrir aðgerð %1 á pöntun %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NothingToPurchaseErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 1434827318" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Routing line %1 on order %2 is not a work center operation; only work center operations can be subcontracted.</source>
+          <target>Leiðarlína %1 á pöntun %2 er ekki vinnustöðvaraðgerð; aðeins vinnustöðvaraðgerðir geta verið undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = operation number, %2 = production order number||is-IS=Leiðarlína %1 á pöntun %2 er ekki vinnustöðvaraðgerð; aðeins vinnustöðvaraðgerðir geta verið undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NotWorkCenterErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 3255873965" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 is longer than the %2 characters Business Central allows.</source>
+          <target>%1 er lengra en þeir %2 stafir sem Business Central leyfir.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key, %2 = max length||is-IS=%1 er lengra en þeir %2 stafir sem Business Central leyfir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType TooLongErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>subcontracting, subcontract purchase order, production routing, work center, vendor operation</source>
+          <target>undirverktaka, undirverktakakaup, framleiðsluleið, vinnustöð, söluaðilaaðgerð</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=undirverktaka, undirverktakakaup, framleiðsluleið, vinnustöð, söluaðilaaðgerð</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates purchase orders for the outstanding quantity of one subcontracted routing operation. Check the work center vendor and manufacturing setup first.</source>
+          <target>Stofnar innkaupapantanir fyrir óafgreitt magn einnar undirverktakaleiðaraðgerðar. Athugaðu söluaðila vinnustöðvar og framleiðslugrunn fyrst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stofnar innkaupapantanir fyrir óafgreitt magn einnar undirverktakaleiðaraðgerðar. Athugaðu söluaðila vinnustöðvar og framleiðslugrunn fyrst.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 1271598736 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bifrost Subcontracting</source>
+          <target>Bifröst - undirverktakar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bifröst - undirverktakar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST Subc ori - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

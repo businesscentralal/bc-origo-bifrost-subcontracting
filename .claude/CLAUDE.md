@@ -18,8 +18,11 @@ Tests: 97300-97399
 | 10036885 | enumextension | Sub Msg Type ori |
 | 10036886 | codeunit | Sub PO Create Impl ori |
 | 10036887 | codeunit | Sub Registration ori |
-| 10036888 | permissionset | BIFROST Subcontracting ori |
+| 10036888 | permissionset | BIFROST Subc ori |
+| 10036889 | permissionsetextension | BIFROST SubcFull ori |
+| 10036890 | permissionsetextension | BIFROST SubcRead ori |
 | 97300 | codeunit (test) | Sub Create PO Tst ori |
+| 97301 | codeunit (test) | Sub Create PO Runner ori |
 
 ## Microsoft source
 Wrapped Microsoft app: Subcontracting (`1f32a50d-0057-4b95-b5df-cc04d7e89470`, 28.5.0.0). Source: https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting
