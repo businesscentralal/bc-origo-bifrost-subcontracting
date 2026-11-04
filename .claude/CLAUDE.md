@@ -13,7 +13,18 @@ Origo.Bifrost.Subcontracting (tests: Origo.Bifrost.Subcontracting.Test)
 App:   10036885-10036984
 Tests: 97300-97399
 
-No objects are allocated yet. Record every allocated id here as objects are created.
+| ID | Object | Purpose |
+| --- | --- | --- |
+| 10036887 | Sub Registration ori (codeunit) | Foundation registration |
+| 10036888 | BIFROST Subc ori (permission set) | Base execute rights |
+| 10036889 | BIFROST SubcFull ori (permission set extension) | Foundation full role |
+| 10036890 | BIFROST SubcRead ori (permission set extension) | Foundation read role |
+| 10036891 | BIFROST SC Full ori (permission set) | Full scaffold role |
+| 10036892 | BIFROST SC Read ori (permission set) | Read scaffold role |
+| 97302 | Sub Scaffold Tests ori (test codeunit) | Event-path and restricted-role smoke tests |
+
+10036885-10036886 and 97300-97301 remain reserved by the separate purchase-order candidate PR #20.
+No message type is added by scaffold issue #1.
 
 ## Microsoft source
 Wrapped Microsoft app: Subcontracting (`1f32a50d-0057-4b95-b5df-cc04d7e89470`, 28.5.0.0). Source: https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting
