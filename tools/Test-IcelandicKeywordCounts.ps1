@@ -16,6 +16,9 @@
       - the target of a KeywordsLbl unit in the Icelandic xlf has fewer entries than its source
         (the file is checked when it exists; regenerate it with tools/Update-IcelandicXlf.ps1).
 
+    A registration-only scaffold has no keyword lists. Zero lists are accepted only when no message enum extension
+    or message interface implementation is declared; a message implementation without KeywordsLbl still fails.
+
     More Icelandic entries than English ones are fine (an integrator may type an English word on purpose, for example
     "delta", next to the Icelandic one).
 
@@ -49,6 +52,17 @@ function Get-KeywordCount([string]$Text) {
         if ($term -ne '') { [void]$terms.Add($term) }
     }
     return $terms.Count
+}
+
+# A scaffold has no message discovery keywords yet. Still reject a missing KeywordsLbl as soon as
+# a message enum or implementation exists, so this never hides an incomplete message type.
+function Test-HasMessageTypes([string]$Folder) {
+    $messageDeclaration = '(?is)enumextension\s+\d+\s+[^{}]+?extends\s+"Message Type ori"|codeunit\s+\d+\s+[^{}]+?implements\s+[^{}]*"Msg (?:Discovery|Contract|Interface) ori"'
+    foreach ($file in Get-ChildItem -LiteralPath $Folder -Recurse -Filter '*.al') {
+        $source = (Get-Content -LiteralPath $file.FullName -Encoding UTF8 | Where-Object { $_ -notmatch '^\s*//' }) -join "`n"
+        if ($source -match $messageDeclaration) { return $true }
+    }
+    return $false
 }
 
 function Find-ShortKeywordLists([string]$Folder) {
@@ -140,11 +154,26 @@ function Invoke-SelfTest {
         if (-not ($xr.Violations | Where-Object { $_ -like 'u1*' })) { $failures.Add('did not report the short xlf target u1') }
         if ($xr.Violations | Where-Object { $_ -like 'u2*' -or $_ -like 'u3*' }) { $failures.Add('reported a unit that is fine (u2) or not a keyword list (u3)') }
 
+        # Applicability is based on real declarations, never on whether keyword labels happen to exist.
+        $scaffold = Join-Path $root 'scaffold'
+        New-Item -ItemType Directory $scaffold | Out-Null
+        Set-Content -LiteralPath (Join-Path $scaffold 'Registration.al') -Value 'namespace Origo.Bifrost.Subcontracting; codeunit 10036887 "Sub Registration ori" { }' -Encoding UTF8
+        if (Test-HasMessageTypes $scaffold) { $failures.Add('a registration-only scaffold was treated as a message implementation') }
+        $declarationFile = Join-Path $scaffold 'Message.al'
+        foreach ($declaration in @(
+            'enumextension 10036885 "Sub Msg Type ori" extends "Message Type ori" { value(10036885; "Subcontracting.Test.Run") { } }',
+            'codeunit 10036886 "Sub Test Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori" { }',
+            'codeunit 10036886 "Sub Test Impl ori" implements "Msg Discovery ori" { }'
+        )) {
+            Set-Content -LiteralPath $declarationFile -Value $declaration -Encoding UTF8
+            if (-not (Test-HasMessageTypes $scaffold)) { $failures.Add('a keyword-less message declaration escaped the guard') }
+        }
+
         if ($failures.Count -gt 0) {
             $failures | ForEach-Object { Write-Host "SELF-TEST FAILED: $_" }
             exit 1
         }
-        Write-Host 'Self-test passed: short lists, a missing is-IS= text, repeats and a short xlf target are reported; longer and equal lists are accepted.'
+        Write-Host 'Self-test passed: short/missing translations and repeat-count drift are rejected, complete translations are accepted; registration-only scaffolds have no keyword requirement and keyword-less message declarations remain guarded.'
     }
     finally {
         Remove-Item -LiteralPath $root -Recurse -Force -ErrorAction SilentlyContinue
@@ -158,7 +187,12 @@ $sourceResult = Find-ShortKeywordLists $AppFolder
 $xlfPath = Get-ChildItem -LiteralPath (Join-Path $AppFolder 'Translations') -Filter '*.is-IS.xlf' -ErrorAction SilentlyContinue | Select-Object -First 1
 $xlfResult = if ($xlfPath) { Find-ShortKeywordTargets $xlfPath.FullName } else { [pscustomobject]@{ Checked = 0; Violations = @() } }
 
-if ($sourceResult.Checked -eq 0) { throw "No KeywordsLbl found under $AppFolder - the guard checked nothing." }
+if ($sourceResult.Checked -eq 0) {
+    if (Test-HasMessageTypes $AppFolder) {
+        throw "Message types exist under $AppFolder but no KeywordsLbl was found - the keyword guard checked nothing."
+    }
+    Write-Host 'No message types are declared in this scaffold; there are no discovery keywords to translate.'
+}
 $all = @($sourceResult.Violations) + @($xlfResult.Violations)
 if ($all.Count -gt 0) {
     Write-Host "$($all.Count) Icelandic keyword list(s) have fewer entries than the English one:"
