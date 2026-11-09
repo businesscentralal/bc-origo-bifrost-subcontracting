@@ -7,3 +7,4 @@
 - Added installed-app registration and licence-admin discovery smoke tests (97302), with no message types or copied Microsoft code.
 - Kept Subcontracting help links and bilingual permission captions available through Foundation discovery.
 - Fixed the keyword translation guard for registration-only scaffolds; keyword-less message declarations still fail, with applicability regression checks.
+- Added Subcontracting.Worksheet.CarryOut (enumextension 10036898, value and codeunit 10036897). It runs report Carry Out Action Msg. - Req. for accepted lines of one subcontracting worksheet batch. Permission set 10036888 executes the codeunit. Tests are 97314 and 97315.

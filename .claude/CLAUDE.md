@@ -22,9 +22,15 @@ Tests: 97300-97399
 | 10036891 | BIFROST SC Full ori (permission set) | Full scaffold role |
 | 10036892 | BIFROST SC Read ori (permission set) | Read scaffold role |
 | 97302 | Sub Scaffold Tests ori (test codeunit) | Event-path and restricted-role smoke tests |
+| 10036897 | Sub Wksh Carry Impl ori (codeunit) | Subcontracting.Worksheet.CarryOut |
+| 10036898 | Sub Wksh Carry Msg ori (enum extension) | Message type registration for CarryOut |
+| 97314 | Sub Wksh Carry Tst ori (test codeunit) | Carry-out acceptance tests |
+| 97315 | Sub Wksh Carry Run ori (codeunit) | Isolated carry-out dispatcher run |
 
 10036885-10036886 and 97300-97301 remain reserved by the separate purchase-order candidate PR #20.
-No message type is added by scaffold issue #1.
+10036893-10036894 and 97310-97311 remain reserved by the worksheet calculate candidate.
+10036895-10036896 and 97312-97313 remain reserved by the transfer-order candidate.
+Issue #4 adds Subcontracting.Worksheet.CarryOut on the scaffold. It does not add the other message types.
 
 ## Microsoft source
 Wrapped Microsoft app: Subcontracting (`1f32a50d-0057-4b95-b5df-cc04d7e89470`, 28.5.0.0). Source: https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting
