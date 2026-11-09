@@ -3,6 +3,270 @@
   <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Subcontracting">
     <body>
       <group id="body">
+        <trans-unit id="Codeunit 2666800520 - NamedType 138314172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>At most %1 characters</source>
+          <target>Mest %1 stafir</target>
+          <note from="Developer" annotates="general" priority="2">%1 = max length||is-IS=Mest %1 stafir</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType AtMostTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2413182283" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The standard report Subc. Create Transf. Order is the same object as the purchase order action Create Transf. Ord. to Subcontractor. On this application the report commits after it inserts the transfer lines, then asks page management to show them. A call without a user interface does not open the page. This message does not write transfer fields itself and does not add another Commit(). The call is not idempotent: a repeat when demand is already covered is a Business Central refusal, and a repeat while quantity remains can add lines to the open transfer order. An unknown key changes nothing. A caller who is not SUPER and has no execute permission on this codeunit is refused with PermissionDenied before the report runs, and nothing is created. Permission set BIFROST Subc ori grants that execute permission. BIFROST Full ori includes it.</source>
+          <target>Staðlaða skýrslan Subc. Create Transf. Order er sami hlutur og aðgerðin til að stofna flutningspöntun til undirverktaka á innkaupapöntuninni. Í þessu forriti staðfestir skýrslan færsluna eftir að flutningslínurnar hafa verið stofnaðar og biður síðan síðustýringu um að sýna þær. Köllun án notendaviðmóts opnar ekki síðuna. Þessi skilaboð skrifa ekki sjálf í flutningsreiti og bæta engu Commit() við. Köllunin er ekki ítrekunarörugg: endurtekning þegar eftirspurn er þegar uppfyllt er höfnun frá Business Central, en endurtekning á meðan magn er eftir getur bætt línum við opna flutningspöntun. Óþekktur lykill breytir engu. Notanda sem er ekki SUPER og hefur ekki keyrsluheimild á þessari kótaeiningu er hafnað með PermissionDenied áður en skýrslan keyrir og ekkert er stofnað. Heimildasafnið BIFROST Subc ori veitir þessa keyrsluheimild. BIFROST Full ori inniheldur hana.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Staðlaða skýrslan Subc. Create Transf. Order er sami hlutur og aðgerðin til að stofna flutningspöntun til undirverktaka á innkaupapöntuninni. Í þessu forriti staðfestir skýrslan færsluna eftir að flutningslínurnar hafa verið stofnaðar og biður síðan síðustýringu um að sýna þær. Köllun án notendaviðmóts opnar ekki síðuna. Þessi skilaboð skrifa ekki sjálf í flutningsreiti og bæta engu Commit() við. Köllunin er ekki ítrekunarörugg: endurtekning þegar eftirspurn er þegar uppfyllt er höfnun frá Business Central, en endurtekning á meðan magn er eftir getur bætt línum við opna flutningspöntun. Óþekktur lykill breytir engu. Notanda sem er ekki SUPER og hefur ekki keyrsluheimild á þessari kótaeiningu er hafnað með PermissionDenied áður en skýrslan keyrir og ekkert er stofnað. Heimildasafnið BIFROST Subc ori veitir þessa keyrsluheimild. BIFROST Full ori inniheldur hana.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ContractNotesTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3028310837" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number of the subcontracting purchase order. The report uses this number as its purchase header filter.</source>
+          <target>Númer innkaupapöntunar undirverktaka. Skýrslan notar númerið sem afmörkun á innkaupahaus.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer innkaupapöntunar undirverktaka. Skýrslan notar númerið sem afmörkun á innkaupahaus.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ContractParameterTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1761882626" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The subject is not used.</source>
+          <target>subject er ekki notað.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=subject er ekki notað.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ContractSubjectTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 624854103" size-unit="char" translate="yes" xml:space="preserve">
+          <source>purchase order number</source>
+          <target>númer innkaupapöntunar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=númer innkaupapöntunar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ContractTargetFormTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3335025149" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Subcontracting purchase order whose components are transferred.</source>
+          <target>Innkaupapöntun undirverktaka sem flytja á íhluti fyrir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innkaupapöntun undirverktaka sem flytja á íhluti fyrir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ContractTargetTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2712000517" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The released production order and its routing exist, with components set to Transfer to Vendor or work in process still requiring transfer.</source>
+          <target>Útgefin framleiðslupöntun og leið hennar eru til, með íhlutum sem flytja á til lánardrottins eða vörum í vinnslu sem enn þarf að flytja.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Útgefin framleiðslupöntun og leið hennar eru til, með íhlutum sem flytja á til lánardrottins eða vörum í vinnslu sem enn þarf að flytja.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType DemandPreconditionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3569966352" maxwidth="250" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates transfer orders that move production components to the subcontractor location for one subcontracting purchase order.</source>
+          <target>Býr til flutningspantanir sem flytja framleiðsluíhluti á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Býr til flutningspantanir sem flytja framleiðsluíhluti á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 4294928590" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calls report Subc. Create Transf. Order for one purchase order. The report inserts transfer orders for components with supply method Transfer to Vendor, and for work in process when the routing asks for it. It writes no transfer fields except by that report. After the lines exist, the report calls Commit() and then asks page management to show the transfer orders. A session without a user interface does not open that page. This message adds no Commit of its own.</source>
+          <target>Keyrir skýrsluna Subc. Create Transf. Order fyrir eina innkaupapöntun. Skýrslan stofnar flutningspantanir fyrir íhluti með afhendingaraðferðinni Flutningur til lánardrottins og fyrir vörur í vinnslu þegar leiðin krefst þess. Engir flutningsreitir eru skrifaðir nema í gegnum skýrsluna. Eftir að línurnar hafa verið stofnaðar kallar skýrslan á Commit() og síðan á síðustýringu til að sýna flutningspantanirnar. Lota án notendaviðmóts opnar ekki þá síðu. Þessi skilaboð bæta engu Commit() við.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Keyrir skýrsluna Subc. Create Transf. Order fyrir eina innkaupapöntun. Skýrslan stofnar flutningspantanir fyrir íhluti með afhendingaraðferðinni Flutningur til lánardrottins og fyrir vörur í vinnslu þegar leiðin krefst þess. Engir flutningsreitir eru skrifaðir nema í gegnum skýrsluna. Eftir að línurnar hafa verið stofnaðar kallar skýrslan á Commit() og síðan á síðustýringu til að sýna flutningspantanirnar. Lota án notendaviðmóts opnar ekki þá síðu. Þessi skilaboð bæta engu Commit() við.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType EffectChangesTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1428349442" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A second call when nothing remains to transfer is the standard Nothing to create error and adds no document. While quantity remains, another call can add lines to the open transfer order for the same purchase order, vendor and locations. A successful call has already committed.</source>
+          <target>Önnur köllun þegar ekkert er eftir til flutnings skilar stöðluðu villunni um að ekkert sé til að stofna og bætir engu skjali við. Á meðan magn er eftir getur önnur köllun bætt línum við opna flutningspöntun fyrir sömu innkaupapöntun, lánardrottin og staðsetningar. Vel heppnuð köllun hefur þegar staðfest færsluna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Önnur köllun þegar ekkert er eftir til flutnings skilar stöðluðu villunni um að ekkert sé til að stofna og bætir engu skjali við. Á meðan magn er eftir getur önnur köllun bætt línum við opna flutningspöntun fyrir sömu innkaupapöntun, lánardrottin og staðsetningar. Vel heppnuð köllun hefur þegar staðfest færsluna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType EffectIdempotentTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2503805099" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fix the condition Business Central named. A refusal before the report commits leaves no transfer document.</source>
+          <target>Leiðréttu skilyrðið sem Business Central nefndi. Höfnun áður en skýrslan staðfestir færsluna skilur ekkert flutningsskjal eftir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Leiðréttu skilyrðið sem Business Central nefndi. Höfnun áður en skýrslan staðfestir færsluna skilur ekkert flutningsskjal eftir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorBusinessFixTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2452357466" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Business Central refused the report, for example the order is not subcontracting work or nothing remains to transfer.</source>
+          <target>Business Central hafnaði skýrslunni, til dæmis vegna þess að pöntunin er ekki undirverktakavinna eða ekkert er eftir til flutnings.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Business Central hafnaði skýrslunni, til dæmis vegna þess að pöntunin er ekki undirverktakavinna eða ekkert er eftir til flutnings.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorBusinessTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3074792872" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send a purchase order number.</source>
+          <target>Sendu númer innkaupapöntunar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu númer innkaupapöntunar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorFormatFixTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 4099390597" size-unit="char" translate="yes" xml:space="preserve">
+          <source>purchaseOrderNo is longer than 20 characters.</source>
+          <target>purchaseOrderNo er lengra en 20 stafir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=purchaseOrderNo er lengra en 20 stafir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorFormatTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2450880741" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the key.</source>
+          <target>Sendu lykilinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorMissingFixTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 937397664" size-unit="char" translate="yes" xml:space="preserve">
+          <source>purchaseOrderNo is missing.</source>
+          <target>purchaseOrderNo vantar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=purchaseOrderNo vantar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorMissingTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3393118456" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check the purchase order number.</source>
+          <target>Athugaðu númer innkaupapöntunarinnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Athugaðu númer innkaupapöntunarinnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorNotFoundFixTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 4223820981" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The purchase order does not exist.</source>
+          <target>Innkaupapöntunin er ekki til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innkaupapöntunin er ekki til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorNotFoundTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2360370768" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assign BIFROST Subc ori, or BIFROST Full ori which includes it.</source>
+          <target>Úthlutaðu BIFROST Subc ori, eða BIFROST Full ori sem inniheldur hana.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Subc ori, eða BIFROST Full ori sem inniheldur hana.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorPermissionFixTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 4219556205" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Execute permission on this message is missing.</source>
+          <target>Keyrsluheimild vantar á þessi skilaboð.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Keyrsluheimild vantar á þessi skilaboð.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorPermissionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1539109745" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the key.</source>
+          <target>Fjarlægðu lykilinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu lykilinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorUnknownFixTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1163502324" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The request contains a key this type does not accept.</source>
+          <target>Beiðnin inniheldur lykil sem þessi tegund tekur ekki við.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Beiðnin inniheldur lykil sem þessi tegund tekur ekki við.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ErrorUnknownTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1088896604" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create a subcontracting transfer order</source>
+          <target>Stofna flutningspöntun undirverktaka</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stofna flutningspöntun undirverktaka</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ExampleTitleTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3782179627" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Execute permission on Sub Transf Impl ori</source>
+          <target>Keyrsluheimild á Sub Transf Impl ori</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Keyrsluheimild á Sub Transf Impl ori</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ExpectedExecuteTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2720402316" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A purchase order</source>
+          <target>Innkaupapöntun</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innkaupapöntun</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ExpectedOrderTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1932020653" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A non-empty string</source>
+          <target>Strengur sem er ekki tómur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Strengur sem er ekki tómur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ExpectedTextTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1575191754" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Provide %1.</source>
+          <target>Tilgreindu %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=Tilgreindu %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType MissingKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3460430053" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the number of an existing purchase order.</source>
+          <target>Sendu númer innkaupapöntunar sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu númer innkaupapöntunar sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NextStepOrderTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1735036322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assign BIFROST Subc ori or BIFROST Full ori, then call again.</source>
+          <target>Úthlutaðu BIFROST Subc ori eða BIFROST Full ori og kallaðu aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Subc ori eða BIFROST Full ori og kallaðu aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NextStepPermissionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1284506242" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the key in data and call again.</source>
+          <target>Sendu lykilinn í data og kallaðu aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn í data og kallaðu aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NextStepProvideTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 971048101" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Execute permission on the subcontracting transfer message is required. Assign BIFROST Subc ori, or BIFROST Full ori which includes it. Nothing was created.</source>
+          <target>Keyrsluheimild vantar á flutningsskilaboð undirverktaka. Úthlutaðu BIFROST Subc ori, eða BIFROST Full ori sem inniheldur hana. Ekkert var búið til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Keyrsluheimild vantar á flutningsskilaboð undirverktaka. Úthlutaðu BIFROST Subc ori, eða BIFROST Full ori sem inniheldur hana. Ekkert var búið til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NoExecuteErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1108143201" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase order %1 was not found.</source>
+          <target>Innkaupapöntun %1 fannst ekki.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = purchase order number||is-IS=Innkaupapöntun %1 fannst ekki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType OrderMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 150650310" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The purchase order exists and contains subcontracting production work.</source>
+          <target>Innkaupapöntunin er til og inniheldur framleiðsluvinnu undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innkaupapöntunin er til og inniheldur framleiðsluvinnu undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType OrderPreconditionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1339533284" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open transfer orders linked to the purchase order after the report.</source>
+          <target>Opnar flutningspantanir tengdar innkaupapöntuninni eftir keyrslu skýrslunnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Opnar flutningspantanir tengdar innkaupapöntuninni eftir keyrslu skýrslunnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ResponseCountTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1817764562" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer lines linked to the purchase order after the report.</source>
+          <target>Flutningslínur tengdar innkaupapöntuninni eftir keyrslu skýrslunnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Flutningslínur tengdar innkaupapöntuninni eftir keyrslu skýrslunnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ResponseLinesTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 7009685" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Numbers of those transfer orders.</source>
+          <target>Númer þessara flutningspantana.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer þessara flutningspantana.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ResponseNumbersTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3765635319" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase order that was processed.</source>
+          <target>Innkaupapöntunin sem var unnin.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innkaupapöntunin sem var unnin.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ResponseOrderTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 828755617" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Success when the standard report finished.</source>
+          <target>Success þegar staðlaða skýrslan hefur lokið keyrslu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Success þegar staðlaða skýrslan hefur lokið keyrslu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ResponseStatusTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 934674865" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The caller has execute permission on this message and the standard report, and the business-data permissions required by Business Central.</source>
+          <target>Notandinn hefur keyrsluheimild á þessum skilaboðum og stöðluðu skýrslunni, ásamt þeim heimildum á viðskiptagögnum sem Business Central krefst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notandinn hefur keyrsluheimild á þessum skilaboðum og stöðluðu skýrslunni, ásamt þeim heimildum á viðskiptagögnum sem Business Central krefst.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType RightsPreconditionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3255873965" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 is longer than the %2 characters Business Central allows.</source>
+          <target>%1 er lengra en þeir %2 stafir sem Business Central leyfir.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key, %2 = max length||is-IS=%1 er lengra en þeir %2 stafir sem Business Central leyfir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType TooLongErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2912406318" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unknown request key %1.</source>
+          <target>Óþekktur beiðnilykill %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=Óþekktur beiðnilykill %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType UnknownKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3511006071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Move production components to the subcontractor location for one subcontracting purchase order.</source>
+          <target>Flyttu framleiðsluíhluti á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Flyttu framleiðsluíhluti á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType WorkflowPurposeTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>subcontracting, transfer order, purchase order, component, subcontractor, work in process</source>
+          <target>undirverktaka, flutningspöntun, innkaupapöntun, íhlutur, undirverktaki, vara í vinnslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=undirverktaka, flutningspöntun, innkaupapöntun, íhlutur, undirverktaki, vara í vinnslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates transfer orders that send components, and work in process when the routing asks for it, from the component location to the subcontractor location for one subcontracting purchase order.</source>
+          <target>Býr til flutningspantanir sem senda íhluti, og vöru í vinnslu þegar leiðin biður um það, af staðsetningu íhlutar á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Býr til flutningspantanir sem senda íhluti, og vöru í vinnslu þegar leiðin biður um það, af staðsetningu íhlutar á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
+        </trans-unit>
         <trans-unit id="PermissionSet 2062066724 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bifrost Subcontracting Full</source>
           <target>Bifröst undirverktakar fullt</target>

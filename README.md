@@ -11,7 +11,7 @@ Bifröst message types, so an agent can operate it end to end. It is built on th
 
 **Microsoft source:** <https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting>
 
-**Scope:** scaffold registration and permission roles; no message types yet.
+**Scope:** scaffold registration and permission roles, plus `Subcontracting.TransferOrder.Create` on this branch.
 
 ---
 
@@ -59,11 +59,25 @@ site repository and is published at <https://docs.bifrost.origo.is>.
 
 | Role | Scope |
 | --- | --- |
-| BIFROST Subc ori | Execute scaffold registration only |
+| BIFROST Subc ori | Execute registration and Subcontracting.TransferOrder.Create; business-data rights remain separate |
 | BIFROST SC Full ori | Includes the base set; included by Foundation Full |
 | BIFROST SC Read ori | Metadata discovery only; included by Foundation Read |
 
 Foundation's Bifröst Setup page lists the installed app through its application registry.
-The scaffold has no setup page, no Microsoft table grants and no message types. Licence administrators can discover it without an additional feature role.
+The app has no setup page and grants no Microsoft table rights. Licence administrators can discover it without an additional feature role.
+
+## Subcontracting.TransferOrder.Create
+
+Creates component transfers for one subcontracting purchase order through Microsoft's **Subc. Create Transf. Order** report.
+
+```json
+{"type":"Subcontracting.TransferOrder.Create","data":{"purchaseOrderNo":"106001"}}
+```
+
+The source purchase order must contain production work, with a released production order, routing and uncovered component or work-in-process demand. The caller needs execute permission and the standard Business Central business-data permissions. Missing or unknown request keys are refused before any document is created.
+
+The report calls `Commit()` after creating its transfer lines. The operation is **not idempotent**: when demand is covered, a repeat is refused; while demand remains, another call can add lines to the open transfer order. The response lists the linked transfer order numbers and line count after the report finishes.
+
+Read the installed help through `Help.Implementation.Get` with subject `Subcontracting.TransferOrder.Create` (LCID 1033 or 1039). It includes the request, response, refusals, prerequisites and commit behavior. Catalogue descriptions and refusal messages follow the requested language. Foundation deliberately renders structured contract chapters in canonical English; the app also includes Icelandic resources for its contract implementation.
 
 Help: [English](https://docs.bifrost.origo.is/en-us/subcontracting/) · [Íslenska](https://docs.bifrost.origo.is/is-is/subcontracting/).
