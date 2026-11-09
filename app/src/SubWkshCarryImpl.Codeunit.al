@@ -36,6 +36,9 @@ codeunit 10036897 "Sub Wksh Carry Impl ori" implements "Msg Interface ori", "Msg
         ExpectedNonEmptyTxt: Label 'A non-empty string.', Comment = 'is-IS=Strengur sem er ekki tómur.';
         ExpectedWholeNumberTxt: Label 'A whole number.', Comment = 'is-IS=Heiltala.';
         ExpectedPositiveWholeTxt: Label 'A positive whole number.', Comment = 'is-IS=Jákvæð heiltala.';
+        PermissionDeniedErr: Label 'Carry-out denied: missing ''BIFROST Subc ori'' permission set.', Comment = 'is-IS=Framkvæmd hafnað: vantar ''BIFROST Subc ori'' heimildasamstæðu.';
+        PermissionDeniedNextStepTxt: Label 'Ask an administrator to assign BIFROST Subc ori. Nothing was changed.', Comment = 'is-IS=Biddu kerfisstjóra um að úthluta BIFROST Subc ori. Engu var breytt.';
+        ExpectedPermissionTxt: Label 'BIFROST Subc ori', Locked = true;
         DescriptionLbl: Label 'Turns accepted lines of one subcontracting worksheet batch into subcontracting purchase orders.', MaxLength = 250, Comment = 'is-IS=Breytir samþykktum línum eins hóps á undirverktakavinnublaði í innkaupapantanir undirverktaka.';
 
     /// <summary>Reports that worksheet carry-out is available.</summary>
@@ -142,6 +145,7 @@ codeunit 10036897 "Sub Wksh Carry Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Describes refusals for worksheet carry-out.</summary>
     procedure GetErrors(var Errors: JsonArray): Boolean
     begin
+        Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::PermissionDenied, 'The caller does not have BIFROST Subc ori.', 'Assign BIFROST Subc ori. Nothing is changed.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::MissingParameter, 'worksheetTemplateName or journalBatchName is missing.', 'Send both keys.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::UnknownParameter, 'The request contains a key this type does not accept.', 'Remove the key.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::InvalidParameterFormat, 'A key is too long or lineNo is not a whole number.', 'Send valid values.'));
@@ -251,6 +255,13 @@ codeunit 10036897 "Sub Wksh Carry Impl ori" implements "Msg Interface ori", "Msg
             Argument.RespondWithLastError();
     end;
 
+    local procedure HasCarryPermission(): Boolean
+    var
+        CarryGate: Record "Subc. Carry Gate ori";
+    begin
+        exit(CarryGate.WritePermission());
+    end;
+
     local procedure PerformCarryOut(var Argument: Record "Message Argument ori")
     var
         ReqWkshTemplate: Record "Req. Wksh. Template";
@@ -268,6 +279,11 @@ codeunit 10036897 "Sub Wksh Carry Impl ori" implements "Msg Interface ori", "Msg
         OrdersBefore: Integer;
         OrdersCreated: Integer;
     begin
+        if not HasCarryPermission() then begin
+            Argument.RespondWithError("Bifrost Error Code ori"::PermissionDenied, PermissionDeniedErr, '', '', ExpectedPermissionTxt, PermissionDeniedNextStepTxt);
+            exit;
+        end;
+
         RequestJson := Argument.GetRequestJson();
         if not RejectUnknownKeys(Argument, RequestJson) then
             exit;

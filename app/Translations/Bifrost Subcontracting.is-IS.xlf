@@ -3,6 +3,18 @@
   <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Subcontracting">
     <body>
       <group id="body">
+        <trans-unit id="Table 2101468635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Subcontracting Carry-out Gate</source>
+          <target>Hlið framkvæmdar undirverktaka</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hlið framkvæmdar undirverktaka</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Subc. Carry Gate ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2101468635 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target>Aðallykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Subc. Carry Gate ori - Field Primary Key - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 452890848 - NamedType 138314172" size-unit="char" translate="yes" xml:space="preserve">
           <source>At most %1 characters</source>
           <target>Mest %1 stafir</target>
@@ -128,6 +140,18 @@
           <target>Vinnublaðssniðmát %1 er ekki undirverktakavinnublað.</target>
           <note from="Developer" annotates="general" priority="2">%1 = template name||is-IS=Vinnublaðssniðmát %1 er ekki undirverktakavinnublað.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Carry Impl ori - NamedType NotSubcontractingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 452890848 - NamedType 1902290539" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Carry-out denied: missing 'BIFROST Subc ori' permission set.</source>
+          <target>Framkvæmd hafnað: vantar 'BIFROST Subc ori' heimildasamstæðu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Framkvæmd hafnað: vantar 'BIFROST Subc ori' heimildasamstæðu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Carry Impl ori - NamedType PermissionDeniedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 452890848 - NamedType 981401835" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator to assign BIFROST Subc ori. Nothing was changed.</source>
+          <target>Biddu kerfisstjóra um að úthluta BIFROST Subc ori. Engu var breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um að úthluta BIFROST Subc ori. Engu var breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Carry Impl ori - NamedType PermissionDeniedNextStepTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 452890848 - NamedType 1296320867" size-unit="char" translate="yes" xml:space="preserve">
           <source>Requisition worksheet template %1 was not found.</source>

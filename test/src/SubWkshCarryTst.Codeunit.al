@@ -138,6 +138,7 @@ codeunit 97314 "Sub Wksh Carry Tst ori"
 
     /// <summary>A user without the Bifrost permission set is refused.</summary>
     [Test]
+    [TestPermissions(TestPermissions::Restrictive)]
     procedure CarryOut_LowerPermissions_NoBifrostSet_Refused()
     var
         ProductionOrder: Record "Production Order";
@@ -148,6 +149,7 @@ codeunit 97314 "Sub Wksh Carry Tst ori"
         Ran: Boolean;
     begin
         // [GIVEN] Business permissions without the Subcontracting permission set.
+        // Restrictive mode drops the tenant SUPER user. Outside scope is only for fixture setup.
         Initialize();
         CreateAcceptedLine(ProductionOrder, Vendor, 2);
         RequisitionLine.SetRange("Worksheet Template Name", TemplateName);
@@ -157,15 +159,19 @@ codeunit 97314 "Sub Wksh Carry Tst ori"
         Runner.SetRequest(BatchRequest());
         // Permission changes are refused while the fixture write transaction is open.
         Commit();
+        LibraryLowerPermissions.StartLoggingNAVPermissions();
         LibraryLowerPermissions.SetO365BusFull();
         LibraryLowerPermissions.AddO365BusinessPremium();
         LibraryLowerPermissions.AddPermissionSet('Subcontract. - Edit');
+        Assert.IsTrue(LibraryLowerPermissions.HasChangedPermissions(), 'The permission mock must replace SUPER before the refusal check.');
         // [WHEN] The user carries out the worksheet.
         Ran := Runner.Run();
         LibraryLowerPermissions.SetOutsideO365Scope();
-        // [THEN] The call does not succeed and the worksheet line stays.
-        if Ran then
-            Assert.IsFalse(Runner.GetResponse().Contains('"status":"Success"'), 'Without the Bifrost set the call must not succeed: ' + Runner.GetResponse());
+        LibraryLowerPermissions.StopLoggingNAVPermissions();
+        // [THEN] The dispatcher answers PermissionDenied and the worksheet line stays.
+        Assert.IsTrue(Ran, 'A missing Bifrost permission must be a refusal, not a platform error.');
+        Assert.IsTrue(Runner.GetResponse().Contains('PermissionDenied'), Runner.GetResponse());
+        Assert.IsFalse(Runner.GetResponse().Contains('"status":"Success"'), Runner.GetResponse());
         Assert.AreEqual(LinesBefore, RequisitionLine.Count(), 'A permission refusal must not change the batch.');
     end;
 
