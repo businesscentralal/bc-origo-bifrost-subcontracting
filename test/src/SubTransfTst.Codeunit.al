@@ -4,6 +4,7 @@ using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Location;
 using Microsoft.Inventory.Transfer;
 using Microsoft.Manufacturing.Document;
+using Microsoft.Manufacturing.ProductionBOM;
 using Microsoft.Manufacturing.Routing;
 using Microsoft.Manufacturing.Subcontracting;
 using Microsoft.Manufacturing.WorkCenter;
@@ -18,6 +19,7 @@ using System.TestLibraries.Utilities;
 codeunit 97312 "Sub Transf Tst ori"
 {
     Subtype = Test;
+    TestPermissions = Disabled;
 
     var
         Assert: Codeunit "Library Assert";
@@ -29,6 +31,7 @@ codeunit 97312 "Sub Transf Tst ori"
 
     /// <summary>The standard report creates a transfer order for a subcontracting purchase order.</summary>
     [Test]
+    [HandlerFunctions('TransferOrderPageHandler')]
     procedure Create_HappyPath_CreatesTransferOrder()
     var
         PurchaseHeader: Record "Purchase Header";
@@ -117,6 +120,7 @@ codeunit 97312 "Sub Transf Tst ori"
         TransferLine.SetRange("Subc. Purch. Order No.", PurchaseHeader."No.");
         LinesBefore := TransferLine.Count();
         Runner.SetRequest(OrderRequest(PurchaseHeader."No."));
+        Commit();
         LibraryLowerPermissions.SetO365BusFull();
         LibraryLowerPermissions.AddO365BusinessPremium();
         LibraryLowerPermissions.AddPermissionSet('Subcontract. - Edit');
@@ -127,6 +131,13 @@ codeunit 97312 "Sub Transf Tst ori"
         if Ran then
             Assert.IsFalse(Runner.GetResponse().Contains('"status":"Success"'), 'Without the Bifrost set the call must not succeed: ' + Runner.GetResponse());
         Assert.AreEqual(LinesBefore, TransferLine.Count(), 'A permission refusal must not create a transfer line.');
+    end;
+
+    /// <summary>Closes the transfer order the report shows after it commits.</summary>
+    [PageHandler]
+    procedure TransferOrderPageHandler(var TransferOrder: TestPage "Transfer Order")
+    begin
+        TransferOrder.Close();
     end;
 
     local procedure OrderRequest(PurchaseOrderNo: Code[20]): Text
@@ -155,6 +166,7 @@ codeunit 97312 "Sub Transf Tst ori"
         ProdOrderComponent: Record "Prod. Order Component";
         ProdOrderLine: Record "Prod. Order Line";
         ProdOrderRoutingLine: Record "Prod. Order Routing Line";
+        ProductionBOMHeader: Record "Production BOM Header";
         ProductionOrder: Record "Production Order";
         PurchaseLine: Record "Purchase Line";
         RoutingHeader: Record "Routing Header";
@@ -175,34 +187,21 @@ codeunit 97312 "Sub Transf Tst ori"
         LibraryInventory.CreateItem(Item);
         Item.Validate("Replenishment System", Item."Replenishment System"::"Prod. Order");
         Item.Modify(true);
+        LibraryManufacturing.CreateProductionBOM(ProductionBOMHeader, Item, Component, 1, '');
         LibraryManufacturing.CreateRoutingforWorkCenter(RoutingHeader, Item, WorkCenter."No.");
         LibraryManufacturing.CreateAndRefreshProductionOrder(
             ProductionOrder, Enum::"Production Order Status"::Released, Enum::"Prod. Order Source Type"::Item, Item."No.", 4);
-        ProductionOrder.Validate("Location Code", FromLocation.Code);
-        ProductionOrder.Modify(true);
         ProdOrderLine.SetRange(Status, ProductionOrder.Status);
         ProdOrderLine.SetRange("Prod. Order No.", ProductionOrder."No.");
         ProdOrderLine.FindFirst();
         ProdOrderComponent.SetRange(Status, ProductionOrder.Status);
         ProdOrderComponent.SetRange("Prod. Order No.", ProductionOrder."No.");
-        if ProdOrderComponent.FindSet() then
-            repeat
-                ProdOrderComponent.Validate("Location Code", FromLocation.Code);
-                ProdOrderComponent.Validate("Component Supply Method", ProdOrderComponent."Component Supply Method"::"Transfer to Vendor");
-                ProdOrderComponent.Modify(true);
-            until ProdOrderComponent.Next() = 0
-        else begin
-            ProdOrderComponent.Init();
-            ProdOrderComponent.Status := ProductionOrder.Status;
-            ProdOrderComponent."Prod. Order No." := ProductionOrder."No.";
-            ProdOrderComponent."Prod. Order Line No." := ProdOrderLine."Line No.";
-            ProdOrderComponent."Line No." := 10000;
-            ProdOrderComponent.Validate("Item No.", Component."No.");
-            ProdOrderComponent.Validate("Quantity per", 1);
+        ProdOrderComponent.FindSet();
+        repeat
             ProdOrderComponent.Validate("Location Code", FromLocation.Code);
             ProdOrderComponent.Validate("Component Supply Method", ProdOrderComponent."Component Supply Method"::"Transfer to Vendor");
-            ProdOrderComponent.Insert(true);
-        end;
+            ProdOrderComponent.Modify(true);
+        until ProdOrderComponent.Next() = 0;
         ProdOrderRoutingLine.SetRange(Status, ProductionOrder.Status);
         ProdOrderRoutingLine.SetRange("Prod. Order No.", ProductionOrder."No.");
         ProdOrderRoutingLine.FindFirst();
