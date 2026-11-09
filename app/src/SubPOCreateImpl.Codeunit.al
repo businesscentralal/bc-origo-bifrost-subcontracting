@@ -5,9 +5,9 @@ using Microsoft.Manufacturing.Capacity;
 using Microsoft.Manufacturing.Document;
 using Microsoft.Manufacturing.Routing;
 using Microsoft.Manufacturing.Setup;
+using Microsoft.Manufacturing.Subcontracting;
 using Microsoft.Manufacturing.WorkCenter;
 using Microsoft.Purchases.Document;
-using Microsoft.Manufacturing.Subcontracting;
 using Origo.Bifrost;
 
 /// <summary>
@@ -38,6 +38,9 @@ codeunit 10036886 "Sub PO Create Impl ori" implements "Msg Interface ori", "Msg 
         NoSetupErr: Label 'Manufacturing Setup has no subcontracting requisition template and batch.', Comment = 'is-IS=Framleiðsluuppsetning er ekki með undirverktakabeiðnisniðmát og -hóp.';
         NothingToPurchaseErr: Label 'No outstanding quantity remains to be purchased for operation %1 on order %2.', Comment = '%1 = operation number, %2 = production order number||is-IS=Ekkert óafgreitt magn er eftir til innkaupa fyrir aðgerð %1 á pöntun %2.';
         NoOrderCreatedErr: Label 'Business Central created no purchase order for operation %1 on order %2 (subcontracting disabled, quantity already on purchase orders, or component check declined).', Comment = '%1 = operation number, %2 = production order number||is-IS=Business Central stofnaði enga innkaupapöntun fyrir aðgerð %1 á pöntun %2.';
+        NoPermissionErr: Label 'Permission denied: missing ''%1'' permission set.', Comment = '%1 = permission set||is-IS=Heimild hafnað: vantar heimildasamstæðuna ''%1''.';
+        NoPermissionNextStepLbl: Label 'Ask an administrator to assign the ''%1'' permission set. Nothing was changed.', Comment = '%1 = permission set||is-IS=Biddu kerfisstjóra um að úthluta heimildasamstæðunni ''%1''. Engu var breytt.';
+        PermissionSetTok: Label 'BIFROST Subc ori', Locked = true;
         DescriptionLbl: Label 'Creates subcontract purchase orders for one released production-order routing operation and its outstanding subcontract quantity.', MaxLength = 250, Comment = 'is-IS=Stofnar undirverktakakauppantanir fyrir eina útgefna leiðaraðgerð framleiðslupöntunar og óafgreitt magn hennar.';
 
     /// <summary>Reports whether subcontract purchase-order creation is available.</summary>
@@ -141,6 +144,7 @@ codeunit 10036886 "Sub PO Create Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Describes invalid production routing targets.</summary>
     procedure GetErrors(var Errors: JsonArray): Boolean
     begin
+        Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::PermissionDenied, 'The caller does not have the BIFROST Subc ori permission set.', 'Ask an administrator to assign BIFROST Subc ori or BIFROST Full ori.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::MissingParameter, 'productionOrderNo or operationNo is missing.', 'Send both keys.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::InvalidParameterFormat, 'A key is too long or routingReferenceNo is not a whole number.', 'Send valid values.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::RecordNotFound, 'No released routing line matches the identifiers.', 'Check the production order and operation.'));
@@ -235,8 +239,14 @@ codeunit 10036886 "Sub PO Create Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Executes this message type through Bifrost Foundation.</summary>
     /// <param name="Argument">The message argument and response record.</param>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
+    var
+        Gate: Record "Subc Gate ori";
     begin
         Argument.AssertVersion1();
+        if not Gate.WritePermission() then begin
+            Argument.RespondWithError("Bifrost Error Code ori"::PermissionDenied, StrSubstNo(NoPermissionErr, PermissionSetTok), '', '', PermissionSetTok, StrSubstNo(NoPermissionNextStepLbl, PermissionSetTok));
+            exit;
+        end;
         Argument.AssertIsLicensed();
         if Argument."Omit Commit" then begin
             PerformCreatePurchaseOrders(Argument);

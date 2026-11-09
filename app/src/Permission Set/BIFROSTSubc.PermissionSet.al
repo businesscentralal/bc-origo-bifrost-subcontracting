@@ -10,6 +10,7 @@ permissionset 10036888 "BIFROST Subc ori"
     Access = Public;
 
     Permissions =
+        tabledata "Subc Gate ori" = RIMD,
         codeunit "Sub PO Create Impl ori" = X,
         codeunit "Sub Registration ori" = X;
 }

@@ -117,6 +117,30 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Bifröst - undirverktakar</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST Subc ori - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 64258721" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Permission denied: missing '%1' permission set.</source>
+          <target>Heimild hafnað: vantar heimildasamstæðuna '%1'.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = permission set||is-IS=Heimild hafnað: vantar heimildasamstæðuna '%1'.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NoPermissionErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1523699197 - NamedType 3818043815" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator to assign the '%1' permission set. Nothing was changed.</source>
+          <target>Biddu kerfisstjóra um að úthluta heimildasamstæðunni '%1'. Engu var breytt.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = permission set||is-IS=Biddu kerfisstjóra um að úthluta heimildasamstæðunni '%1'. Engu var breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub PO Create Impl ori - NamedType NoPermissionNextStepLbl</note>
+        </trans-unit>
+        <trans-unit id="Table 4108274912 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BIFROST Subc ori</source>
+          <target>Bifröst - undirverktakar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bifröst - undirverktakar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Subc Gate ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108274912 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target>Aðallykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Subc Gate ori - Field Primary Key - Property Caption</note>
+        </trans-unit>
       </group>
     </body>
   </file>

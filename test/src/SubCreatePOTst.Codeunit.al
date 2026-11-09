@@ -179,6 +179,7 @@ codeunit 97300 "Sub Create PO Tst ori"
 
     /// <summary>A user with the Bifrost Full set and ordinary business permissions can create the order.</summary>
     [Test]
+    [TestPermissions(TestPermissions::NonRestrictive)]
     procedure Create_LowerPermissions_FullSet_Succeeds()
     var
         ProductionOrder: Record "Production Order";
@@ -198,6 +199,7 @@ codeunit 97300 "Sub Create PO Tst ori"
 
     /// <summary>A user without the Bifrost permission set is refused.</summary>
     [Test]
+    [TestPermissions(TestPermissions::NonRestrictive)]
     procedure Create_LowerPermissions_NoBifrostSet_Refused()
     var
         ProductionOrder: Record "Production Order";
@@ -214,8 +216,9 @@ codeunit 97300 "Sub Create PO Tst ori"
         LibraryLowerPermissions.AddPermissionSet('Subcontract. - Edit');
         Ran := Runner.Run();
         LibraryLowerPermissions.SetOutsideO365Scope();
-        if Ran then
-            Assert.IsFalse(Runner.GetResponse().Contains('"status":"Success"'), 'Without the Bifrost set the call must not succeed: ' + Runner.GetResponse());
+        Assert.IsTrue(Ran, 'The refusal should be a response, not an unhandled error.');
+        Assert.IsTrue(Runner.GetResponse().Contains('PermissionDenied'), 'Without the Bifrost set the call must be PermissionDenied: ' + Runner.GetResponse());
+        Assert.IsFalse(Runner.GetResponse().Contains('"status":"Success"'), 'Without the Bifrost set the call must not succeed: ' + Runner.GetResponse());
         PurchaseLine.SetRange("Prod. Order No.", ProductionOrder."No.");
         Assert.RecordIsEmpty(PurchaseLine);
     end;
