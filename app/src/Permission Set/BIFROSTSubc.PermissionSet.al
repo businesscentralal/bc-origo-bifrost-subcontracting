@@ -9,5 +9,8 @@ permissionset 10036888 "BIFROST Subc ori"
     Assignable = true;
     Access = Public;
 
-    Permissions = codeunit "Sub Registration ori" = X;
+    Permissions =
+        tabledata "Subc. Carry Gate ori" = RIMD,
+        codeunit "Sub Registration ori" = X,
+        codeunit "Sub Wksh Carry Impl ori" = X;
 }
