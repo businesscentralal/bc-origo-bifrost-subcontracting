@@ -78,6 +78,6 @@ The source purchase order must contain production work, with a released producti
 
 The report calls `Commit()` after creating its transfer lines. The operation is **not idempotent**: when demand is covered, a repeat is refused; while demand remains, another call can add lines to the open transfer order. The response lists the linked transfer order numbers and line count after the report finishes.
 
-The installed help chapter is available in English and Icelandic through `Help.Implementation.Get` with subject `Subcontracting.TransferOrder.Create` (LCID 1033 or 1039). It includes the request, response, refusals, prerequisites and commit behavior.
+Read the installed help through `Help.Implementation.Get` with subject `Subcontracting.TransferOrder.Create` (LCID 1033 or 1039). It includes the request, response, refusals, prerequisites and commit behavior. Catalogue descriptions and refusal messages follow the requested language. Foundation deliberately renders structured contract chapters in canonical English; the app also includes Icelandic resources for its contract implementation.
 
 Help: [English](https://docs.bifrost.origo.is/en-us/subcontracting/) · [Íslenska](https://docs.bifrost.origo.is/is-is/subcontracting/).
