@@ -4,6 +4,8 @@ using Microsoft.Inventory.Transfer;
 using Microsoft.Manufacturing.Subcontracting;
 using Microsoft.Purchases.Document;
 using Origo.Bifrost;
+using System.Security.AccessControl;
+using System.Security.User;
 
 /// <summary>
 /// Creates transfer orders for one subcontracting purchase order by running report Subc. Create Transf. Order.
@@ -24,6 +26,9 @@ codeunit 10036896 "Sub Transf Impl ori" implements "Msg Interface ori", "Msg Dis
         ExpectedOrderTxt: Label 'A purchase order', Comment = 'is-IS=Innkaupapöntun';
         ExpectedTextTxt: Label 'A non-empty string', Comment = 'is-IS=Strengur sem er ekki tómur';
         DescriptionLbl: Label 'Creates transfer orders that move production components to the subcontractor location for one subcontracting purchase order.', MaxLength = 250, Comment = 'is-IS=Býr til flutningspantanir sem flytja framleiðsluíhluti á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.';
+        NoExecuteErr: Label 'Execute permission on the subcontracting transfer message is required. Assign BIFROST Subc ori, or BIFROST Full ori which includes it. Nothing was created.', Comment = 'is-IS=Keyrsluheimild vantar á flutningsskilaboð undirverktaka. Úthlutaðu BIFROST Subc ori, eða BIFROST Full ori sem inniheldur hana. Ekkert var búið til.';
+        ExpectedExecuteTxt: Label 'Execute permission on Sub Transf Impl ori', Comment = 'is-IS=Keyrsluheimild á Sub Transf Impl ori';
+        NextStepPermissionTxt: Label 'Assign BIFROST Subc ori or BIFROST Full ori, then call again.', Comment = 'is-IS=Úthlutaðu BIFROST Subc ori eða BIFROST Full ori og kallaðu aftur.';
 
     /// <summary>Reports that transfer-order creation is available.</summary>
     procedure IsEnabled(): Boolean
@@ -130,6 +135,7 @@ codeunit 10036896 "Sub Transf Impl ori" implements "Msg Interface ori", "Msg Dis
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::InvalidParameterFormat, 'purchaseOrderNo is longer than 20 characters.', 'Send a purchase order number.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::RecordNotFound, 'The purchase order does not exist.', 'Check the purchase order number.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::BusinessCentralError, 'Business Central refused the report, for example the order is not subcontracting work or nothing remains to transfer.', 'Fix the condition Business Central named. A refusal before the report commits leaves no transfer document.'));
+        Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::PermissionDenied, 'Execute permission on this message is missing.', 'Assign BIFROST Subc ori, or BIFROST Full ori which includes it.'));
         exit(true);
     end;
 
@@ -204,7 +210,7 @@ codeunit 10036896 "Sub Transf Impl ori" implements "Msg Interface ori", "Msg Dis
     /// <summary>Documents the effect and idempotency of transfer-order creation.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     begin
-        Notes := 'The standard report Subc. Create Transf. Order is the same object as the purchase order action Create Transf. Ord. to Subcontractor. On this application the report commits after it inserts the transfer lines, then asks page management to show them. A call without a user interface does not open the page. This message does not write transfer fields itself and does not add another Commit(). The call is not idempotent: a repeat when demand is already covered is a Business Central refusal, and a repeat while quantity remains can add lines to the open transfer order. An unknown key changes nothing.';
+        Notes := 'The standard report Subc. Create Transf. Order is the same object as the purchase order action Create Transf. Ord. to Subcontractor. On this application the report commits after it inserts the transfer lines, then asks page management to show them. A call without a user interface does not open the page. This message does not write transfer fields itself and does not add another Commit(). The call is not idempotent: a repeat when demand is already covered is a Business Central refusal, and a repeat while quantity remains can add lines to the open transfer order. An unknown key changes nothing. A caller who is not SUPER and has no execute permission on this codeunit is refused with PermissionDenied before the report runs, and nothing is created. Permission set BIFROST Subc ori grants that execute permission. BIFROST Full ori includes it.';
         exit(true);
     end;
 
@@ -216,7 +222,7 @@ codeunit 10036896 "Sub Transf Impl ori" implements "Msg Interface ori", "Msg Dis
 
     trigger OnRun()
     begin
-        PerformCreate(Rec);
+        CreateForCaller(Rec, CallerMayExecute());
     end;
 
     /// <summary>Executes this message type through Bifrost Foundation.</summary>
@@ -226,12 +232,49 @@ codeunit 10036896 "Sub Transf Impl ori" implements "Msg Interface ori", "Msg Dis
         Argument.AssertVersion1();
         Argument.AssertIsLicensed();
         if Argument."Omit Commit" then begin
-            PerformCreate(Argument);
+            CreateForCaller(Argument, CallerMayExecute());
             exit;
         end;
 
         if not Codeunit.Run(Codeunit::"Sub Transf Impl ori", Argument) then
             Argument.RespondWithLastError();
+    end;
+
+    /// <summary>
+    /// Runs transfer-order creation when the caller may execute this codeunit, and refuses before the report otherwise.
+    /// Production passes <see cref="CallerMayExecute"/>. A test passes false to prove the refusal.
+    /// The signed-in container user stays SUPER, and this host does not drop that assignment, so the test cannot
+    /// observe a platform denial. The refusal itself still runs this procedure and does not call the report.
+    /// </summary>
+    /// <param name="Argument">The message argument and response record.</param>
+    /// <param name="MayExecute">Whether the caller may execute this codeunit.</param>
+    internal procedure CreateForCaller(var Argument: Record "Message Argument ori"; MayExecute: Boolean)
+    begin
+        if not MayExecute then begin
+            Argument.RespondWithError("Bifrost Error Code ori"::PermissionDenied, NoExecuteErr, 'permissionSet', '', ExpectedExecuteTxt, NextStepPermissionTxt);
+            exit;
+        end;
+
+        PerformCreate(Argument);
+    end;
+
+    /// <summary>
+    /// Returns whether the signed-in user may execute this codeunit.
+    /// SUPER may, because that user can already run the standard report. Any other user needs execute permission,
+    /// which permission set BIFROST Subc ori grants and which BIFROST Full ori includes.
+    /// </summary>
+    internal procedure CallerMayExecute(): Boolean
+    var
+        TempExpandedPermission: Record "Expanded Permission" temporary;
+        UserPermissions: Codeunit "User Permissions";
+        PermissionObjectType: Option "Table Data","Table",,"Report",,"Codeunit","XMLport",MenuSuite,"Page","Query","System";
+    begin
+        if UserPermissions.IsSuper(UserSecurityId()) then
+            exit(true);
+
+        PermissionObjectType := PermissionObjectType::Codeunit;
+        TempExpandedPermission := UserPermissions.GetEffectivePermission(PermissionObjectType, Codeunit::"Sub Transf Impl ori");
+        exit(TempExpandedPermission."Execute Permission" = TempExpandedPermission."Execute Permission"::Yes);
     end;
 
     local procedure PerformCreate(var Argument: Record "Message Argument ori")

@@ -93,6 +93,24 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Bifröst - undirverktakar</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST Subc ori - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 971048101" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Execute permission on the subcontracting transfer message is required. Assign BIFROST Subc ori, or BIFROST Full ori which includes it. Nothing was created.</source>
+          <target>Keyrsluheimild vantar á flutningsskilaboð undirverktaka. Úthlutaðu BIFROST Subc ori, eða BIFROST Full ori sem inniheldur hana. Ekkert var búið til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Keyrsluheimild vantar á flutningsskilaboð undirverktaka. Úthlutaðu BIFROST Subc ori, eða BIFROST Full ori sem inniheldur hana. Ekkert var búið til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NoExecuteErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3782179627" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Execute permission on Sub Transf Impl ori</source>
+          <target>Keyrsluheimild á Sub Transf Impl ori</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Keyrsluheimild á Sub Transf Impl ori</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ExpectedExecuteTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1735036322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assign BIFROST Subc ori or BIFROST Full ori, then call again.</source>
+          <target>Úthlutaðu BIFROST Subc ori eða BIFROST Full ori og kallaðu aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Subc ori eða BIFROST Full ori og kallaðu aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NextStepPermissionTxt</note>
+        </trans-unit>
       </group>
     </body>
   </file>

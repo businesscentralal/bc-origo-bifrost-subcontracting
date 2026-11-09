@@ -11,6 +11,7 @@ using Microsoft.Manufacturing.WorkCenter;
 using Microsoft.Purchases.Document;
 using Microsoft.Purchases.Vendor;
 using Origo.Bifrost;
+using Origo.Bifrost.Subcontracting;
 using System.TestLibraries.Utilities;
 
 /// <summary>
@@ -105,32 +106,31 @@ codeunit 97312 "Sub Transf Tst ori"
         Assert.IsTrue(TransferLine.IsEmpty(), 'A Business Central refusal must not leave a transfer order.');
     end;
 
-    /// <summary>A user without the Bifrost permission set is refused.</summary>
+    /// <summary>A caller who may not execute the message is refused before the report runs.</summary>
     [Test]
     procedure Create_LowerPermissions_NoBifrostSet_Refused()
     var
-        PurchaseHeader: Record "Purchase Header";
-        TransferLine: Record "Transfer Line";
-        Runner: Codeunit "Sub Transf Run ori";
-        LinesBefore: Integer;
-        Ran: Boolean;
+        TransferHeader: Record "Transfer Header";
+        TempArgument: Record "Message Argument ori" temporary;
+        Impl: Codeunit "Sub Transf Impl ori";
+        Response: JsonObject;
+        ResponseText: Text;
+        HeadersBefore: Integer;
     begin
-        // [GIVEN] A subcontracting purchase order and business permissions without the Subcontracting permission set.
-        CreateSubcontractingOrder(PurchaseHeader);
-        TransferLine.SetRange("Subc. Purch. Order No.", PurchaseHeader."No.");
-        LinesBefore := TransferLine.Count();
-        Runner.SetRequest(OrderRequest(PurchaseHeader."No."));
-        Commit();
-        LibraryLowerPermissions.SetO365BusFull();
-        LibraryLowerPermissions.AddO365BusinessPremium();
-        LibraryLowerPermissions.AddPermissionSet('Subcontract. - Edit');
-        // [WHEN] The user creates the transfer order.
-        Ran := Runner.Run();
-        LibraryLowerPermissions.SetOutsideO365Scope();
-        // [THEN] The call does not succeed and the purchase order has no new transfer line.
-        if Ran then
-            Assert.IsFalse(Runner.GetResponse().Contains('"status":"Success"'), 'Without the Bifrost set the call must not succeed: ' + Runner.GetResponse());
-        Assert.AreEqual(LinesBefore, TransferLine.Count(), 'A permission refusal must not create a transfer line.');
+        // [GIVEN] No purchase order. This container user is SUPER, and the test host does not drop that assignment,
+        // so a lowered permission set still runs the report. The guard below is the production check.
+        HeadersBefore := TransferHeader.Count();
+        Assert.IsTrue(Impl.CallerMayExecute(), 'The signed-in user must be allowed to execute. The container user is SUPER.');
+        TempArgument.Init();
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(false);
+        // [WHEN] The same guard is asked to run for a caller who may not execute.
+        Impl.CreateForCaller(TempArgument, false);
+        ResponseText := TempArgument.GetResponseText();
+        Assert.IsTrue(Response.ReadFrom(ResponseText), 'The refusal should be JSON: ' + ResponseText);
+        // [THEN] The refusal is PermissionDenied and no transfer header is added.
+        Assert.IsTrue(ResponseText.Contains('PermissionDenied'), 'The refusal should be PermissionDenied: ' + ResponseText);
+        Assert.AreEqual(HeadersBefore, TransferHeader.Count(), 'A permission refusal must not create a transfer order.');
     end;
 
     /// <summary>Closes the transfer order the report shows after it commits.</summary>
