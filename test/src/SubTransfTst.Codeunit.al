@@ -108,29 +108,59 @@ codeunit 97312 "Sub Transf Tst ori"
 
     /// <summary>A caller who may not execute the message is refused before the report runs.</summary>
     [Test]
-    procedure Create_LowerPermissions_NoBifrostSet_Refused()
+    [TestPermissions(TestPermissions::NonRestrictive)]
+    procedure Scenario_AC05_AC08_ReadRole_ExecutionRefused()
     var
         TransferHeader: Record "Transfer Header";
         TempArgument: Record "Message Argument ori" temporary;
-        Impl: Codeunit "Sub Transf Impl ori";
-        Response: JsonObject;
-        ResponseText: Text;
         HeadersBefore: Integer;
+        PermissionError: Text;
+        ResponseText: Text;
     begin
-        // [GIVEN] No purchase order. This container user is SUPER, and the test host does not drop that assignment,
-        // so a lowered permission set still runs the report. The guard below is the production check.
+        // Story #11, AC05/AC08 | Time: independent of Today/WorkDate | Risk: exact-role execution permissions.
+        // [GIVEN] Foundation's read role excludes the transfer message's execute permission.
         HeadersBefore := TransferHeader.Count();
-        Assert.IsTrue(Impl.CallerMayExecute(), 'The signed-in user must be allowed to execute. The container user is SUPER.');
         TempArgument.Init();
         TempArgument.ID := CreateGuid();
         TempArgument.Insert(false);
-        // [WHEN] The same guard is asked to run for a caller who may not execute.
-        Impl.CreateForCaller(TempArgument, false);
-        ResponseText := TempArgument.GetResponseText();
-        Assert.IsTrue(Response.ReadFrom(ResponseText), 'The refusal should be JSON: ' + ResponseText);
-        // [THEN] The refusal is PermissionDenied and no transfer header is added.
-        Assert.IsTrue(ResponseText.Contains('PermissionDenied'), 'The refusal should be PermissionDenied: ' + ResponseText);
+        LibraryLowerPermissions.StartLoggingNAVPermissions();
+        LibraryLowerPermissions.SetExactPermissionSet('BIFROST Read ori');
+        // [WHEN] The production Codeunit.Run boundary is invoked under that role.
+        if Codeunit.Run(Codeunit::"Sub Transf Impl ori", TempArgument) then
+            ResponseText := TempArgument.GetResponseText()
+        else
+            PermissionError := GetLastErrorText();
+        LibraryLowerPermissions.StopLoggingNAVPermissions();
+        // [THEN] The platform refuses execution; no injected permission decision is used.
+        Assert.IsTrue(
+            (PermissionError.Contains('Sub Transf Impl ori') and PermissionError.Contains('Execute')) or ResponseText.Contains('PermissionDenied'),
+            PermissionError + ResponseText);
         Assert.AreEqual(HeadersBefore, TransferHeader.Count(), 'A permission refusal must not create a transfer order.');
+    end;
+
+    /// <summary>The installed Icelandic help includes the operation's prerequisites and commit behavior.</summary>
+    [Test]
+    procedure Scenario_AC01_AC06_Help_LocalizedWithPreconditions()
+    var
+        Impl: Codeunit "Sub Transf Impl ori";
+        Effect: JsonObject;
+        Changes: JsonToken;
+        Preconditions: JsonToken;
+        OriginalLanguage: Integer;
+    begin
+        // Story #11, AC01/AC06 | Time: independent of Today/WorkDate | Risk: compiled translation resources.
+        // [GIVEN] The installed app's Icelandic language resources.
+        OriginalLanguage := GlobalLanguage();
+        GlobalLanguage(1039);
+        // [WHEN] The message supplies its effect chapter.
+        Impl.GetEffect(Effect);
+        GlobalLanguage(OriginalLanguage);
+        // [THEN] Human-readable help is translated and declares prerequisites and the standard Commit().
+        Assert.IsTrue(Effect.Get('changes', Changes), 'The effect must describe its changes.');
+        Assert.IsTrue(Changes.AsValue().AsText().StartsWith('Keyrir skýrsluna'), Changes.AsValue().AsText());
+        Assert.IsTrue(Changes.AsValue().AsText().Contains('Commit()'), 'The help must disclose the report commit.');
+        Assert.IsTrue(Effect.Get('preconditions', Preconditions), 'The contract must declare its prerequisites.');
+        Assert.AreEqual(3, Preconditions.AsArray().Count(), 'Source, demand and permission prerequisites are required.');
     end;
 
     /// <summary>Closes the transfer order the report shows after it commits.</summary>
