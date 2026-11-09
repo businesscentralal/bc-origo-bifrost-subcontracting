@@ -22,9 +22,14 @@ Tests: 97300-97399
 | 10036891 | BIFROST SC Full ori (permission set) | Full scaffold role |
 | 10036892 | BIFROST SC Read ori (permission set) | Read scaffold role |
 | 97302 | Sub Scaffold Tests ori (test codeunit) | Event-path and restricted-role smoke tests |
+| 10036895 | Sub Transf Msg ori (enum extension) | Subcontracting.TransferOrder.Create |
+| 10036896 | Sub Transf Impl ori (codeunit) | Report Subc. Create Transf. Order |
+| 97312 | Sub Transf Tst ori (test codeunit) | Transfer-order acceptance tests |
+| 97313 | Sub Transf Run ori (test codeunit) | Dispatcher runner for refusals |
 
 10036885-10036886 and 97300-97301 remain reserved by the separate purchase-order candidate PR #20.
-No message type is added by scaffold issue #1.
+10036893-10036894 and 97310-97311 remain reserved by the worksheet candidate PR #23.
+Issue #11 adds Subcontracting.TransferOrder.Create on top of the scaffold. It does not take those reserved IDs.
 
 ## Microsoft source
 Wrapped Microsoft app: Subcontracting (`1f32a50d-0057-4b95-b5df-cc04d7e89470`, 28.5.0.0). Source: https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting

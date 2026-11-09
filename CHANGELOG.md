@@ -7,3 +7,4 @@
 - Added installed-app registration and licence-admin discovery smoke tests (97302), with no message types or copied Microsoft code.
 - Kept Subcontracting help links and bilingual permission captions available through Foundation discovery.
 - Fixed the keyword translation guard for registration-only scaffolds; keyword-less message declarations still fail, with applicability regression checks.
+- Added Subcontracting.TransferOrder.Create (enumextension 10036895, codeunit 10036896). It runs report Subc. Create Transf. Order for one subcontracting purchase order. That report commits after the lines exist. Permission set 10036888 executes the codeunit. Tests are 97312 and 97313.

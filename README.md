@@ -11,7 +11,7 @@ Bifröst message types, so an agent can operate it end to end. It is built on th
 
 **Microsoft source:** <https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting>
 
-**Scope:** scaffold registration and permission roles; no message types yet.
+**Scope:** scaffold registration and permission roles, plus `Subcontracting.TransferOrder.Create` on this branch.
 
 ---
 

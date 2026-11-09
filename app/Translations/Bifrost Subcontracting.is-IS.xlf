@@ -3,6 +3,78 @@
   <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Subcontracting">
     <body>
       <group id="body">
+        <trans-unit id="Codeunit 2666800520 - NamedType 138314172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>At most %1 characters</source>
+          <target>Mest %1 stafir</target>
+          <note from="Developer" annotates="general" priority="2">%1 = max length||is-IS=Mest %1 stafir</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType AtMostTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3569966352" maxwidth="250" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates transfer orders that move production components to the subcontractor location for one subcontracting purchase order.</source>
+          <target>Býr til flutningspantanir sem flytja framleiðsluíhluti á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Býr til flutningspantanir sem flytja framleiðsluíhluti á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2720402316" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A purchase order</source>
+          <target>Innkaupapöntun</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innkaupapöntun</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ExpectedOrderTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1932020653" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A non-empty string</source>
+          <target>Strengur sem er ekki tómur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Strengur sem er ekki tómur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType ExpectedTextTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1575191754" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Provide %1.</source>
+          <target>Tilgreindu %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=Tilgreindu %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType MissingKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3460430053" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the number of an existing purchase order.</source>
+          <target>Sendu númer innkaupapöntunar sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu númer innkaupapöntunar sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NextStepOrderTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1284506242" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the key in data and call again.</source>
+          <target>Sendu lykilinn í data og kallaðu aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn í data og kallaðu aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType NextStepProvideTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 1108143201" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase order %1 was not found.</source>
+          <target>Innkaupapöntun %1 fannst ekki.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = purchase order number||is-IS=Innkaupapöntun %1 fannst ekki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType OrderMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 3255873965" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 is longer than the %2 characters Business Central allows.</source>
+          <target>%1 er lengra en þeir %2 stafir sem Business Central leyfir.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key, %2 = max length||is-IS=%1 er lengra en þeir %2 stafir sem Business Central leyfir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType TooLongErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - NamedType 2912406318" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unknown request key %1.</source>
+          <target>Óþekktur beiðnilykill %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=Óþekktur beiðnilykill %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - NamedType UnknownKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>subcontracting, transfer order, purchase order, component, subcontractor, work in process</source>
+          <target>undirverktaka, flutningspöntun, innkaupapöntun, íhlutur, undirverktaki, vara í vinnslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=undirverktaka, flutningspöntun, innkaupapöntun, íhlutur, undirverktaki, vara í vinnslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2666800520 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates transfer orders that send components, and work in process when the routing asks for it, from the component location to the subcontractor location for one subcontracting purchase order.</source>
+          <target>Býr til flutningspantanir sem senda íhluti, og vöru í vinnslu þegar leiðin biður um það, af staðsetningu íhlutar á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Býr til flutningspantanir sem senda íhluti, og vöru í vinnslu þegar leiðin biður um það, af staðsetningu íhlutar á staðsetningu undirverktaka fyrir eina innkaupapöntun undirverktaka.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Transf Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
+        </trans-unit>
         <trans-unit id="PermissionSet 2062066724 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bifrost Subcontracting Full</source>
           <target>Bifröst undirverktakar fullt</target>
