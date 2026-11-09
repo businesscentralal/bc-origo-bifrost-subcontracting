@@ -3,6 +3,90 @@
   <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Subcontracting">
     <body>
       <group id="body">
+        <trans-unit id="Codeunit 1096157958 - NamedType 138314172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>At most %1 characters</source>
+          <target>Mest %1 stafir</target>
+          <note from="Developer" annotates="general" priority="2">%1 = max length||is-IS=Mest %1 stafir</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType AtMostTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 2807648679" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Requisition worksheet batch %1 was not found on template %2.</source>
+          <target>Beiðnihópur %1 fannst ekki á sniðmáti %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = batch name, %2 = template name||is-IS=Beiðnihópur %1 fannst ekki á sniðmáti %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType BatchMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 3569966352" maxwidth="250" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fills one subcontracting worksheet batch with proposed requisition lines from released production routing lines at external work centers.</source>
+          <target>Fyllir einn hóp undirverktakavinnublaðs með fyrirhuguðum beiðnalínum úr útgefnum leiðarlínum framleiðslu á ytri vinnustöðvum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fyllir einn hóp undirverktakavinnublaðs með fyrirhuguðum beiðnalínum úr útgefnum leiðarlínum framleiðslu á ytri vinnustöðvum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 1432801292" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 must be a date in yyyy-mm-dd form.</source>
+          <target>%1 verður að vera dagsetning á forminu yyyy-mm-dd.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=%1 verður að vera dagsetning á forminu yyyy-mm-dd.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType InvalidDateErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 1575191754" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Provide %1.</source>
+          <target>Tilgreindu %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=Tilgreindu %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType MissingKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 1304413923" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the date as yyyy-mm-dd.</source>
+          <target>Sendu dagsetninguna sem yyyy-mm-dd.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu dagsetninguna sem yyyy-mm-dd.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType NextStepDateTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 1284506242" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the key in data and call again.</source>
+          <target>Sendu lykilinn í data og kallaðu aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn í data og kallaðu aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType NextStepProvideTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 3093595351" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the name of a subcontracting worksheet template and its batch.</source>
+          <target>Sendu nafn undirverktakasniðmáts og hóps þess.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu nafn undirverktakasniðmáts og hóps þess.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType NextStepTemplateTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 366722218" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheet template %1 is not a subcontracting worksheet.</source>
+          <target>Vinnublaðssniðmát %1 er ekki undirverktakavinnublað.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = template name||is-IS=Vinnublaðssniðmát %1 er ekki undirverktakavinnublað.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType NotSubcontractingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 1296320867" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Requisition worksheet template %1 was not found.</source>
+          <target>Beiðnisniðmát %1 fannst ekki.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = template name||is-IS=Beiðnisniðmát %1 fannst ekki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType TemplateMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 3255873965" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 is longer than the %2 characters Business Central allows.</source>
+          <target>%1 er lengra en þeir %2 stafir sem Business Central leyfir.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key, %2 = max length||is-IS=%1 er lengra en þeir %2 stafir sem Business Central leyfir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType TooLongErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 2912406318" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unknown request key %1.</source>
+          <target>Óþekktur beiðnilykill %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request key||is-IS=Óþekktur beiðnilykill %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType UnknownKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>subcontracting, worksheet, calculate subcontracts, requisition line, work center, production order</source>
+          <target>undirverktaka, vinnublað, reikna undirverktaka, beiðnalína, vinnustöð, framleiðslupöntun</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=undirverktaka, vinnublað, reikna undirverktaka, beiðnalína, vinnustöð, framleiðslupöntun</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Replaces the lines of one subcontracting worksheet batch with proposals from released external routing lines. The batch is cleared first.</source>
+          <target>Skiptir út línum eins hóps á undirverktakavinnublaði fyrir tillögur úr útgefnum ytri leiðarlínum. Hópurinn er tæmdur fyrst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skiptir út línum eins hóps á undirverktakavinnublaði fyrir tillögur úr útgefnum ytri leiðarlínum. Hópurinn er tæmdur fyrst.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
+        </trans-unit>
         <trans-unit id="PermissionSet 2062066724 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bifrost Subcontracting Full</source>
           <target>Bifröst undirverktakar fullt</target>

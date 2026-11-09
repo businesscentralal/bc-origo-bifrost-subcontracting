@@ -22,9 +22,13 @@ Tests: 97300-97399
 | 10036891 | BIFROST SC Full ori (permission set) | Full scaffold role |
 | 10036892 | BIFROST SC Read ori (permission set) | Read scaffold role |
 | 97302 | Sub Scaffold Tests ori (test codeunit) | Event-path and restricted-role smoke tests |
+| 10036893 | Sub Wksh Msg ori (enum extension) | Subcontracting.Worksheet.Calculate |
+| 10036894 | Sub Wksh Calc Impl ori (codeunit) | Report Subc. Calculate Subcontracts |
+| 97310 | Sub Wksh Calc Tst ori (test codeunit) | Worksheet calculation acceptance tests |
+| 97311 | Sub Wksh Calc Run ori (test codeunit) | Dispatcher runner for refusals |
 
 10036885-10036886 and 97300-97301 remain reserved by the separate purchase-order candidate PR #20.
-No message type is added by scaffold issue #1.
+Issue #3 adds Subcontracting.Worksheet.Calculate on top of the scaffold. It does not take those reserved IDs.
 
 ## Microsoft source
 Wrapped Microsoft app: Subcontracting (`1f32a50d-0057-4b95-b5df-cc04d7e89470`, 28.5.0.0). Source: https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting

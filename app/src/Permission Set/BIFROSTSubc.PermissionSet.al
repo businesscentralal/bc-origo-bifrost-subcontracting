@@ -1,7 +1,7 @@
 namespace Origo.Bifrost.Subcontracting;
 
 /// <summary>
-/// Grants execution of the scaffold registry subscriber without granting access to business data.
+/// Grants execution of subcontracting messages without granting access to business data.
 /// </summary>
 permissionset 10036888 "BIFROST Subc ori"
 {
@@ -9,5 +9,7 @@ permissionset 10036888 "BIFROST Subc ori"
     Assignable = true;
     Access = Public;
 
-    Permissions = codeunit "Sub Registration ori" = X;
+    Permissions =
+        codeunit "Sub Registration ori" = X,
+        codeunit "Sub Wksh Calc Impl ori" = X;
 }
