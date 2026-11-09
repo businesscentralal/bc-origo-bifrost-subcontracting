@@ -2,7 +2,7 @@
   "id": "a1a7e927-8beb-4ab5-b2c3-68d0f339e43b",
   "name": "Bifrost Subcontracting",
   "publisher": "Origo",
-  "version": "28.0.0.0",
+  "version": "28.0.1.0",
   "brief": "Bifrost Subcontracting - message types for Subcontracting",
   "description": "Bifröst message types for the Microsoft Subcontracting app, so an agent can operate it end to end.",
   "url": "https://www.origo.is/",
