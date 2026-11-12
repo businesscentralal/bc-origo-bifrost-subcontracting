@@ -121,11 +121,16 @@ codeunit 97310 "Sub Wksh Calc Tst ori"
         Assert.IsTrue(Runner.GetResponse().Contains('BusinessCentralError'), 'The refusal code should be BusinessCentralError: ' + Runner.GetResponse());
         // [THEN] The refusal leaves the batch as it was.
         Assert.AreEqual(LinesBefore, RequisitionLine.Count(), 'A Business Central refusal must not leave partial worksheet lines.');
+        // [CLEANUP] The scenario was committed for the committing dispatch path: unblock the item so later tests calculate cleanly.
+        Item.Get(ProductionOrder."Source No.");
+        Item.Blocked := false;
+        Item.Modify();
+        Commit();
     end;
 
-    /// <summary>A user without the Bifrost permission set is refused.</summary>
+    /// <summary>A user who cannot write requisition lines is refused with PermissionDenied.</summary>
     [Test]
-    procedure Calculate_LowerPermissions_NoBifrostSet_Refused()
+    procedure Calculate_NoRequisitionWrite_PermissionDenied()
     var
         ProductionOrder: Record "Production Order";
         Vendor: Record Vendor;
@@ -142,14 +147,13 @@ codeunit 97310 "Sub Wksh Calc Tst ori"
         LinesBefore := RequisitionLine.Count();
         Runner.SetRequest(BatchRequest());
         LibraryLowerPermissions.SetO365BusFull();
-        LibraryLowerPermissions.AddO365BusinessPremium();
-        LibraryLowerPermissions.AddPermissionSet('Subcontract. - Edit');
         // [WHEN] The user calculates the worksheet.
         Ran := Runner.Run();
         LibraryLowerPermissions.SetOutsideO365Scope();
-        // [THEN] The call does not succeed and the batch is unchanged.
-        if Ran then
-            Assert.IsFalse(Runner.GetResponse().Contains('"status":"Success"'), 'Without the Bifrost set the call must not succeed: ' + Runner.GetResponse());
+        // [THEN] The call is refused with PermissionDenied and the batch is unchanged.
+        Assert.IsTrue(Ran, 'The permission refusal must come back as a response: ' + GetLastErrorText());
+        Assert.IsTrue(Runner.GetResponse().Contains('"status":"Error"'), 'Expected an error response: ' + Runner.GetResponse());
+        Assert.IsTrue(Runner.GetResponse().Contains('PermissionDenied'), 'The refusal code should be PermissionDenied: ' + Runner.GetResponse());
         Assert.AreEqual(LinesBefore, RequisitionLine.Count(), 'A permission refusal must not change the batch.');
     end;
 

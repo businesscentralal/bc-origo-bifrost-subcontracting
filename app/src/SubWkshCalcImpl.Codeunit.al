@@ -22,6 +22,9 @@ codeunit 10036894 "Sub Wksh Calc Impl ori" implements "Msg Interface ori", "Msg 
         TemplateMissingErr: Label 'Requisition worksheet template %1 was not found.', Comment = '%1 = template name||is-IS=Beiðnisniðmát %1 fannst ekki.';
         BatchMissingErr: Label 'Requisition worksheet batch %1 was not found on template %2.', Comment = '%1 = batch name, %2 = template name||is-IS=Beiðnihópur %1 fannst ekki á sniðmáti %2.';
         NotSubcontractingErr: Label 'Worksheet template %1 is not a subcontracting worksheet.', Comment = '%1 = template name||is-IS=Vinnublaðssniðmát %1 er ekki undirverktakavinnublað.';
+        NoPermissionErr: Label 'User %1 does not have permission to change requisition worksheet lines or read production routing lines, so the subcontracting worksheet cannot be calculated.', Comment = '%1 = User ID||is-IS=Notandinn %1 hefur ekki heimild til að breyta beiðnalínum eða lesa leiðarlínur framleiðslu, því er ekki hægt að reikna undirverktakavinnublaðið.';
+        NextStepPermissionTxt: Label 'Ask an administrator to assign a permission set that edits requisition lines and reads production routing lines (for example Subcontract. - Edit) in addition to BIFROST Subc ori.', Comment = 'is-IS=Biddu stjórnanda um að úthluta heimildasamstæðu sem breytir beiðnalínum og les leiðarlínur framleiðslu (til dæmis Subcontract. - Edit) til viðbótar við BIFROST Subc ori.';
+        PermissionExpectedTxt: Label 'write permission on requisition lines and read permission on production routing lines', Comment = 'is-IS=skrifheimild á beiðnalínur og lesheimild á leiðarlínur framleiðslu';
         AtMostTxt: Label 'At most %1 characters', Comment = '%1 = max length||is-IS=Mest %1 stafir';
         NextStepProvideTxt: Label 'Send the key in data and call again.', Comment = 'is-IS=Sendu lykilinn í data og kallaðu aftur.';
         NextStepTemplateTxt: Label 'Send the name of a subcontracting worksheet template and its batch.', Comment = 'is-IS=Sendu nafn undirverktakasniðmáts og hóps þess.';
@@ -138,6 +141,7 @@ codeunit 10036894 "Sub Wksh Calc Impl ori" implements "Msg Interface ori", "Msg 
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::InvalidParameterFormat, 'A key is too long or startingDate is not yyyy-mm-dd.', 'Send valid values.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::RecordNotFound, 'The worksheet template or batch does not exist.', 'Check the template and batch names.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::PreconditionFailed, 'The template is not a subcontracting worksheet.', 'Choose a subcontracting template.'));
+        Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::PermissionDenied, 'The caller cannot write requisition lines or read production routing lines.', 'Ask an administrator for a permission set that edits requisition lines and reads production routing lines, in addition to BIFROST Subc ori.'));
         Errors.Add(ContractMgt.ErrorEntry("Bifrost Error Code ori"::BusinessCentralError, 'Business Central refused the calculation, for example a blocked item.', 'Fix the condition Business Central named. The batch is unchanged.'));
         exit(true);
     end;
@@ -246,6 +250,7 @@ codeunit 10036894 "Sub Wksh Calc Impl ori" implements "Msg Interface ori", "Msg 
         ReqWkshTemplate: Record "Req. Wksh. Template";
         RequisitionWkshName: Record "Requisition Wksh. Name";
         RequisitionLine: Record "Requisition Line";
+        ProdOrderRoutingLine: Record "Prod. Order Routing Line";
         RequestJson: JsonObject;
         ResponseJson: JsonObject;
         TemplateName: Code[10];
@@ -308,6 +313,11 @@ codeunit 10036894 "Sub Wksh Calc Impl ori" implements "Msg Interface ori", "Msg 
         RequisitionWkshName.SetLoadFields(Name, "Worksheet Template Name");
         if not RequisitionWkshName.Get(TemplateName, BatchName) then begin
             Argument.RespondWithError("Bifrost Error Code ori"::RecordNotFound, StrSubstNo(BatchMissingErr, BatchName, TemplateName), 'journalBatchName', BatchName, 'A batch of the worksheet template', NextStepTemplateTxt);
+            exit;
+        end;
+
+        if not (RequisitionLine.WritePermission() and ProdOrderRoutingLine.ReadPermission()) then begin
+            Argument.RespondWithError("Bifrost Error Code ori"::PermissionDenied, StrSubstNo(NoPermissionErr, UserId()), '', '', PermissionExpectedTxt, NextStepPermissionTxt);
             exit;
         end;
 

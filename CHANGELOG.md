@@ -7,4 +7,4 @@
 - Added installed-app registration and licence-admin discovery smoke tests (97302), with no message types or copied Microsoft code.
 - Kept Subcontracting help links and bilingual permission captions available through Foundation discovery.
 - Fixed the keyword translation guard for registration-only scaffolds; keyword-less message declarations still fail, with applicability regression checks.
-- Added Subcontracting.Worksheet.Calculate (enumextension 10036893, codeunit 10036894). It runs report Subc. Calculate Subcontracts for one subcontracting worksheet batch. Permission set 10036888 executes the codeunit. Tests are 97310 and 97311.
+- Added Subcontracting.Worksheet.Calculate (enumextension 10036893, codeunit 10036894). It runs report Subc. Calculate Subcontracts for one subcontracting worksheet batch. Permission set 10036888 executes the codeunit. The call is refused with PermissionDenied when the caller cannot write requisition lines or read production routing lines. Tests are 97310 and 97311.

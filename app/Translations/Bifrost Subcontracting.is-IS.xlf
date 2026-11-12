@@ -105,6 +105,24 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Bifröst - undirverktakar</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST Subc ori - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 1735036322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator to assign a permission set that edits requisition lines and reads production routing lines (for example Subcontract. - Edit) in addition to BIFROST Subc ori.</source>
+          <target>Biddu stjórnanda um að úthluta heimildasamstæðu sem breytir beiðnalínum og les leiðarlínur framleiðslu (til dæmis Subcontract. - Edit) til viðbótar við BIFROST Subc ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu stjórnanda um að úthluta heimildasamstæðu sem breytir beiðnalínum (til dæmis Subcontract. - Edit) til viðbótar við BIFROST Subc ori.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType NextStepPermissionTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 64258721" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User %1 does not have permission to change requisition worksheet lines or read production routing lines, so the subcontracting worksheet cannot be calculated.</source>
+          <target>Notandinn %1 hefur ekki heimild til að breyta beiðnalínum eða lesa leiðarlínur framleiðslu, því er ekki hægt að reikna undirverktakavinnublaðið.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = User ID||is-IS=Notandinn %1 hefur ekki heimild til að breyta beiðnalínum, því er ekki hægt að reikna undirverktakavinnublaðið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType NoPermissionErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1096157958 - NamedType 870608751" size-unit="char" translate="yes" xml:space="preserve">
+          <source>write permission on requisition lines and read permission on production routing lines</source>
+          <target>skrifheimild á beiðnalínur og lesheimild á leiðarlínur framleiðslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=skrifheimild á beiðnalínur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sub Wksh Calc Impl ori - NamedType PermissionExpectedTxt</note>
+        </trans-unit>
       </group>
     </body>
   </file>
