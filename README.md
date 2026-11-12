@@ -11,7 +11,7 @@ Bifröst message types, so an agent can operate it end to end. It is built on th
 
 **Microsoft source:** <https://github.com/microsoft/BCApps/tree/main/src/Apps/W1/Subcontracting>
 
-**Scope:** scaffold registration and permission roles; no message types yet.
+**Scope:** scaffold registration, permission roles, and `Subcontracting.Worksheet.Calculate`.
 
 ---
 
@@ -59,11 +59,11 @@ site repository and is published at <https://docs.bifrost.origo.is>.
 
 | Role | Scope |
 | --- | --- |
-| BIFROST Subc ori | Execute scaffold registration only |
+| BIFROST Subc ori | Execute registration and Subcontracting.Worksheet.Calculate |
 | BIFROST SC Full ori | Includes the base set; included by Foundation Full |
 | BIFROST SC Read ori | Metadata discovery only; included by Foundation Read |
 
 Foundation's Bifröst Setup page lists the installed app through its application registry.
-The scaffold has no setup page, no Microsoft table grants and no message types. Licence administrators can discover it without an additional feature role.
+The app has no setup page and grants no Microsoft table data. `Subcontracting.Worksheet.Calculate` executes through permission set BIFROST Subc ori, which Foundation Full includes. Licence administrators can discover the app without that set.
 
 Help: [English](https://docs.bifrost.origo.is/en-us/subcontracting/) · [Íslenska](https://docs.bifrost.origo.is/is-is/subcontracting/).
