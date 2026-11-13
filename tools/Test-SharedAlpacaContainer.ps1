@@ -81,3 +81,6 @@ try {
     if ([IO.Path]::GetFileName($resolved) -notlike 'bifrost-shared-tests-*' -or [IO.Path]::GetDirectoryName($resolved).TrimEnd('\','/') -ne ([IO.Path]::GetTempPath()).TrimEnd('\','/')) { throw 'Unexpected test scratch path.' }
     Remove-Item -LiteralPath $resolved -Recurse -Force
 }
+
+# The dependency startup hook must preserve refused installs and safe restarts.
+& "$PSScriptRoot/Test-SubcontractingAlpacaStartup.ps1"

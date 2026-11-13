@@ -53,7 +53,9 @@
     ".AL-Go/*.ps1",
     "tools/Get-SharedAlpacaBuildOrder.ps1",
     "tools/SharedAlpacaContainer.ps1",
-    "tools/Test-SharedAlpacaContainer.ps1"
+    "tools/Test-SharedAlpacaContainer.ps1",
+    "tools/SubcontractingAlpacaStartup/**",
+    "tools/Test-SubcontractingAlpacaStartup.ps1"
   ],
   "repoVersion": "28.0",
   "deliverToAppSource": {
